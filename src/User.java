@@ -47,6 +47,14 @@ public class User {
         this.playerName = playerName;
     }
 
+    public String getPlayerPassword() {
+        return playerPassword;
+    }
+
+    public void setPlayerPassword(String playerPassword) {
+        this.playerPassword = playerPassword;
+    }
+
     public String getPlayerBackgroundColor() {
         return playerBackgroundColor;
     }
