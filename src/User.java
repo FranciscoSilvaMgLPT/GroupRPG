@@ -2,19 +2,24 @@ import java.util.ArrayList;
 
 public class User {
     private String playerName;
+    private String playerPassword;
     private String playerBackgroundColor;
     private int playerPoints;
     private ArrayList<Medal> playerMedals;
 
-    public User(String playerName, String playerBackgroundColor) {
+    public User() {
+    }
+
+    public User(String playerName, String playerPassword, String playerBackgroundColor) {
         this.playerName = playerName;
+        this.playerPassword = playerPassword;
         this.playerBackgroundColor = playerBackgroundColor;
         this.playerPoints = 0;
         this.playerMedals= new ArrayList<>();
     }
 
     //====== PLAYER METHODS ======\\
-    public void move(String move) {
+    /*public void move(String move) {
         switch (move) {
             case "W":
                 return y+1;
@@ -31,7 +36,7 @@ public class User {
             default:
                 System.out.println("\nInvalid movement!");
         }
-    }
+    }*/
 
     //====== GETTER & SETTER ======\\
     public String getPlayerName() {
