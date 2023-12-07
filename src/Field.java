@@ -5,13 +5,14 @@ public class Field {
     private boolean mission;
     private boolean start;
     private boolean finish;
+    private boolean user;
 
     public Field() {
         this.block = false;
         this.mission = false;
         this.completed = false;
-        this.start=false;
-        this.finish=false;
+        this.start = false;
+        this.finish = false;
     }
 
     public String getSymbol() {
@@ -60,5 +61,13 @@ public class Field {
 
     public void setFinish(boolean finish) {
         this.finish = finish;
+    }
+
+    public boolean isUser() {
+        return user;
+    }
+
+    public void setUser(boolean user) {
+        this.user = user;
     }
 }
