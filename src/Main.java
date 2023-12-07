@@ -8,6 +8,5 @@ public class Main {
         map.CreateLimits();
         map.showMap();
 
-
     }
 }

@@ -23,25 +23,28 @@ public class Map {
         }
     }
 
-    private void updateMap(){
+    private void updateMap() {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 30; j++) {
-                if(map[i][j].isBlock()) {
+                if (map[i][j].isBlock()) {
                     map[i][j].setSymbol("🟫");
-                }else{
+                } else {
                     map[i][j].setSymbol("◻️");
                 }
-                if(map[i][j].isMission()) {
+                if (map[i][j].isMission()) {
                     map[i][j].setSymbol("🎁");
                 }
-                if(map[i][j].isCompleted()) {
+                if (map[i][j].isCompleted()) {
                     map[i][j].setSymbol("✅");
                 }
-                if(map[i][j].isStart()) {
+                if (map[i][j].isStart()) {
                     map[i][j].setSymbol("🟦");
                 }
-                if(map[i][j].isFinish()) {
+                if (map[i][j].isFinish()) {
                     map[i][j].setSymbol("🎄");
+                }
+                if(map[i][j].isUser()){
+                    map[i][j].setSymbol("BACKGROUND COLOR"+map[i][j].getSymbol()+"RESET");
                 }
             }
         }
@@ -60,4 +63,7 @@ public class Map {
         map[11][29].setFinish(true);
     }
 
+    public Field[][] getMap() {
+        return map;
+    }
 }
