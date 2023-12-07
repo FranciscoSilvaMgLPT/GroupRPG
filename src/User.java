@@ -1,22 +1,68 @@
 import java.util.ArrayList;
 
 public class User {
-    private String name;
-    private String password;
-    private int points;
-    private ArrayList<Medal> medals;
+    private String playerName;
+    private String playerBackgroundColor;
+    private int playerPoints;
+    private ArrayList<Medal> playerMedals;
 
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-        this.points = 0;
-        this.medals= new ArrayList<Medal>();
+    public User(String playerName, String playerBackgroundColor) {
+        this.playerName = playerName;
+        this.playerBackgroundColor = playerBackgroundColor;
+        this.playerPoints = 0;
+        this.playerMedals= new ArrayList<>();
     }
 
-    public User(String name, String password, int points, ArrayList<Medal> medals) {
-        this.name = name;
-        this.password = password;
-        this.points = points;
-        this.medals = medals;
+    //====== PLAYER METHODS ======\\
+    public void move(String move) {
+        switch (move) {
+            case "W":
+                return y+1;
+                break;
+            case "S":
+                return y-1;
+                break;
+            case "A":
+                return x-1;
+                break;
+            case "D":
+                return x+1;
+                break;
+            default:
+                System.out.println("\nInvalid movement!");
+        }
+    }
+
+    //====== GETTER & SETTER ======\\
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerBackgroundColor() {
+        return playerBackgroundColor;
+    }
+
+    public void setPlayerBackgroundColor(String playerBackgroundColor) {
+        this.playerBackgroundColor = playerBackgroundColor;
+    }
+
+    public int getPlayerPoints() {
+        return playerPoints;
+    }
+
+    public void setPlayerPoints(int playerPoints) {
+        this.playerPoints = playerPoints;
+    }
+
+    public ArrayList<Medal> getPlayerMedals() {
+        return playerMedals;
+    }
+
+    public void setPlayerMedals(ArrayList<Medal> playerMedals) {
+        this.playerMedals = playerMedals;
     }
 }
