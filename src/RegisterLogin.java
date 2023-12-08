@@ -13,10 +13,10 @@ public class RegisterLogin {
         System.out.println("Register");
         System.out.println();
         System.out.println("Username");
-        user.setName(scan.nextLine());
+        user.setPlayerName(scan.nextLine());
         System.out.println("Password");
-        user.setPassword(scan.nextLine());
-        DataBaseTxt.writeNewUser(file, user.getName() + split + user.getPassword());
+        user.setPlayerPassword(scan.nextLine());
+        DataBaseTxt.writeNewUser(file, user.getPlayerName() + split + user.getPlayerPassword());
 
     }
     public void login() {
@@ -33,9 +33,9 @@ public class RegisterLogin {
         int userIndex = -1;
 
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password)) {
+            if (users.get(i).getPlayerName().equals(username) && users.get(i).getPlayerPassword().equals(password)) {
                 userIndex = i;
-                userLogin = users.get(i).getName();
+                userLogin = users.get(i).getPlayerName();
                 break;
             }
         }
