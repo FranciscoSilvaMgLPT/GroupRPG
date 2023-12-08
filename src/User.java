@@ -78,4 +78,5 @@ public class User {
     public void setPlayerMedals(ArrayList<Medal> playerMedals) {
         this.playerMedals = playerMedals;
     }
+
 }
