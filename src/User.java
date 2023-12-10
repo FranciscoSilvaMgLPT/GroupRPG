@@ -10,6 +10,11 @@ public class User {
     public User() {
     }
 
+    public User(String playerName, String playerPassword) {
+        this.playerName = playerName;
+        this.playerPassword = playerPassword;
+    }
+
     public User(String playerName, String playerPassword, String playerBackgroundColor) {
         this.playerName = playerName;
         this.playerPassword = playerPassword;
