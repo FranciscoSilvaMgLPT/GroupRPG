@@ -96,7 +96,7 @@ public class GameManager {
             default:
                 System.out.println("Enter a valid option:");
         }
-        playMenu();
+        playMenu(user);
     }
 
     public void play(User user) {
