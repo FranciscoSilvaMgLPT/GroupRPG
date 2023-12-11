@@ -1,3 +1,5 @@
+import FrontEnd.Colors;
+
 public class Map {
     private Field[][] map;
 
