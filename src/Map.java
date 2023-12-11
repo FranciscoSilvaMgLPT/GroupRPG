@@ -3,6 +3,9 @@ import FrontEnd.Colors;
 public class Map {
     private Field[][] map;
 
+
+    public Map() {
+    }
     public Map(int y, int x) {
         this.map = new Field[y][x];
     }
@@ -13,10 +16,6 @@ public class Map {
                 map[i][j] = new Field();
             }
         }
-        map[0][3].setStart(true);
-        map[11][29].setFinish(true);
-        user.setX(3);
-        user.setY(0);
     }
 
     public void showMap(User user) {
@@ -56,7 +55,7 @@ public class Map {
         }
     }
 
-    public void CreateLimits() {
+    public void createLimits() {
         for (int i = 0; i < map.length; i++) {
             map[i][0].setBlock(true);
             map[i][map[0].length - 1].setBlock(true);
@@ -92,6 +91,16 @@ public class Map {
         } else {
             System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
         }
+    }
+
+    public void level1(User user){
+        map = new Map(15,30).getMap();
+        createMap(user);
+        createLimits();
+        user.setX(3);
+        user.setY(0);
+        map[user.getY()][user.getX()].setStart(true);
+        map[11][29].setFinish(true);
     }
 
     public Field[][] getMap() {

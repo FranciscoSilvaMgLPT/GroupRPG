@@ -26,7 +26,7 @@ public class FileManager {
             while ((line = reader.readLine()) != null) {
                 lineSplited = line.split(";");
                 if (lineSplited[0].equals(username) && lineSplited[1].equals(password)) {
-                    System.out.println("User \""+username+"\" found!!!");
+                    System.out.println("User \""+username+"\" found!!!\n");
                     reader.close();
                     return true;
                 }
