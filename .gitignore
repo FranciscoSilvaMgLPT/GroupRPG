@@ -72,6 +72,10 @@ Temporary Items
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+# .iml
+*.iml
+
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
