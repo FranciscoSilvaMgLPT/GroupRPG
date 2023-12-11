@@ -55,10 +55,25 @@ public class GameManager {
     }
 
     public static void play() {
+        Scanner scan = new Scanner(System.in);
         Map map = new Map();
+        User user = new User();
         map.createMap();
         map.CreateLimits();
         map.showMap();
+
+        String playerMove;
+        do {
+            map.updateMap();
+            System.out.println("Player Menu");
+            System.out.println();
+            System.out.println("[WASD] - Move");
+            System.out.println("\n0. Exit");
+            System.out.println();
+            System.out.print("Enter choice: ");
+            playerMove = scan.next();
+            user.move(playerMove.toUpperCase());
+        } while(!playerMove.equals("0"));
     }
 
 }

@@ -6,6 +6,8 @@ public class User {
     private String playerBackgroundColor;
     private int playerPoints;
     private ArrayList<Medal> playerMedals;
+    private int x = 3;
+    private int y = 5;
 
     public User() {
     }
@@ -24,24 +26,32 @@ public class User {
     }
 
     //====== PLAYER METHODS ======\\
-    /*public void move(String move) {
+    public void move(String move) {
         switch (move) {
             case "W":
-                return y+1;
+                y++;
+                System.out.println(y);
                 break;
             case "S":
-                return y-1;
+                y--;
+                System.out.println(y);
                 break;
             case "A":
-                return x-1;
+                x--;
+                System.out.println(x);
                 break;
             case "D":
-                return x+1;
+                x++;
+                System.out.println(x);
+                break;
+            case "0":
+                System.out.println("Exiting...");
+                System.exit(0);
                 break;
             default:
                 System.out.println("\nInvalid movement!");
         }
-    }*/
+    }
 
     //====== GETTER & SETTER ======\\
     public String getPlayerName() {
