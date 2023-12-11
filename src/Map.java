@@ -6,8 +6,8 @@ public class Map {
     }
 
     public void createMap() {
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[0].length; j++) {
                 map[i][j] = new Field();
             }
         }
@@ -15,8 +15,8 @@ public class Map {
 
     public void showMap() {
         updateMap();
-        for (int i = 14; i >= 0; i--) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = map.length-1; i >= 0; i--) {
+            for (int j = 0; j < map[0].length; j++) {
                 System.out.print(map[i][j].getSymbol());
             }
             System.out.println();
@@ -24,8 +24,8 @@ public class Map {
     }
 
     private void updateMap() {
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[0].length; j++) {
                 if (map[i][j].isBlock()) {
                     map[i][j].setSymbol("🟫");
                 } else {
@@ -51,13 +51,13 @@ public class Map {
     }
 
     public void CreateLimits(){
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < map.length; i++) {
             map[i][0].setBlock(true);
-            map[i][29].setBlock(true);
+            map[i][map[0].length-1].setBlock(true);
         }
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < map[0].length; i++) {
             map[0][i].setBlock(true);
-            map[14][i].setBlock(true);
+            map[map.length-1][i].setBlock(true);
         }
         map[0][3].setStart(true);
         map[11][29].setFinish(true);
