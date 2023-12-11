@@ -3,8 +3,8 @@ import FrontEnd.Colors;
 public class Map {
     private Field[][] map;
 
-    public Map() {
-        this.map = new Field[15][30];
+    public Map(int y, int x) {
+        this.map = new Field[y][x];
     }
 
     public void createMap(User user) {
@@ -90,7 +90,7 @@ public class Map {
             user.setX(tempX);
             map[user.getY()][user.getX()].setUser(true);
         } else {
-            System.out.println("You cant go there!");
+            System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
         }
     }
 
