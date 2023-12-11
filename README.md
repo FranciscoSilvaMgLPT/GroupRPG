@@ -1,5 +1,3 @@
-# GroupRPG
-
 ## Visão Geral
 Este é um jogo simples em Java baseado em mapas/níveis. Os jogadores podem explorar ambientes, enfrentar desafios e coletar recompensas para encontrar a porta de saída e completar o jogo.
 
@@ -11,6 +9,6 @@ Este é um jogo simples em Java baseado em mapas/níveis. Os jogadores podem exp
 ## Membros do Projeto
 - Ricardo Silva [@rickymoz]
 - Francisco Silva [@FranciscoSilvaMgLPT]
-- Paulo . [@zohnions]
+- Paulo Barbosa [@zhonions]
 
 
