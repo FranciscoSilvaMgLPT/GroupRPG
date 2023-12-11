@@ -33,7 +33,7 @@ public class GameManager {
         } while (!choice.equals("0"));
     }
 
-    public void playMenu() {
+    public void playMenu(User user) {
         do {
             System.out.println("PLAY Menu");
             System.out.println();
@@ -91,7 +91,7 @@ public class GameManager {
         String password = scan.next();
         if(fileManager.findUser(username, password)){
             user =new User(username,password);
-            play(user);
+            playMenu(user);
         }
     }
 
