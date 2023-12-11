@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class GameManager {
     FileManager fileManager = new FileManager();
-
     User user = new User();
     Scanner scan = new Scanner(System.in);
     String choice;
@@ -33,7 +32,7 @@ public class GameManager {
         } while (!choice.equals("0"));
     }
 
-    public void playMenu() {
+    public void playMenu(User user) {
         do {
             System.out.println("PLAY Menu");
             System.out.println();
@@ -91,7 +90,7 @@ public class GameManager {
         String password = scan.next();
         if(fileManager.findUser(username, password)){
             user =new User(username,password);
-            play(user);
+            playMenu(user);
         }
     }
 
