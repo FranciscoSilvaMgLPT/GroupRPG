@@ -1,3 +1,5 @@
+package Map;
+
 public class Field {
     private String symbol;
     private boolean block;
