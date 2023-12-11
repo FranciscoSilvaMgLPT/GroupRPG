@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class GameManager {
     FileManager fileManager = new FileManager();
-
     User user = new User();
     Scanner scan = new Scanner(System.in);
     String choice;
