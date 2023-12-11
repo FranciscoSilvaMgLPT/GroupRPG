@@ -8,9 +8,9 @@ public class RegisterLogin {
     GameManager gameManager = new GameManager();
     String split = ";";
     String userLogin = "";
-
+    User user = new User();
     public void register() {
-        User user = new User();
+
         String file = "User.txt";
         System.out.println("Register");
         System.out.println();
@@ -26,16 +26,17 @@ public class RegisterLogin {
         System.out.println("Login");
         System.out.println();
         System.out.println("Username");
-        String username = scan.next();
+         user.setPlayerName(scan.next());
         System.out.println("Password");
-        String password = scan.next();
+        user.setPlayerPassword(scan.next());
+
 
         List<User> users = getAllUsers();
 
         int userIndex = -1;
 
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getPlayerName().equals(username) && users.get(i).getPlayerPassword().equals(password)) {
+            if (users.get(i).getPlayerName().equals(user.getPlayerName()) && users.get(i).getPlayerPassword().equals(user.getPlayerPassword())) {
                 userIndex = i;
                 userLogin = users.get(i).getPlayerName();
                 break;
