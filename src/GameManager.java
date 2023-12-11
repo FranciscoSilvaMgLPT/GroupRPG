@@ -1,3 +1,5 @@
+import FrontEnd.Colors;
+
 import java.util.Scanner;
 
 public class GameManager {
@@ -72,22 +74,23 @@ public class GameManager {
     }
 
     public void registerUser() {
-        System.out.println("Register");
+        System.out.println(Colors.MAGENTA_BOLD+"\n\n📝REGISTER📝"+Colors.RESET);
         System.out.println();
-        System.out.println("Username");
+        System.out.print("Username:");
         user.setPlayerName(scan.next());
-        System.out.println("Password");
+        System.out.print("Password:");
         user.setPlayerPassword(scan.next());
         fileManager.saveUserLog(user);
     }
 
     public void loginUser() {
-        System.out.println("Login");
+        System.out.println(Colors.MAGENTA_BOLD+"\n\n🔑LOGIN🔑"+Colors.RESET);
         System.out.println();
-        System.out.println("Username");
+        System.out.print("Username:");
         String username = scan.next();
-        System.out.println("Password");
+        System.out.print("Password:");
         String password = scan.next();
+        System.out.println();
         if(fileManager.findUser(username, password)){
             user =new User(username,password);
             playMenu(user);
