@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class RegisterLogin {
 
     Scanner scan = new Scanner(System.in);
-    Menus menus = new Menus();
+    GameManager gameManager = new GameManager();
     String split = ";";
     String userLogin = "";
     public void register() {
@@ -44,11 +44,11 @@ public class RegisterLogin {
 
         if (isUserExist) {
             System.out.println("Login successfully");
+            gameManager.playMenu();
             System.out.println();
-            GameManager.showMap();
         } else {
             System.out.println("Login not successfully");
-            menus.menuRegisterLogin();
+            gameManager.initialMenu();
             System.out.println();
         }
         System.out.println();
