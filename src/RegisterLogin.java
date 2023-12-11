@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ public class RegisterLogin {
     GameManager gameManager = new GameManager();
     String split = ";";
     String userLogin = "";
+
     public void register() {
         User user = new User();
         String file = "User.txt";
@@ -19,6 +21,7 @@ public class RegisterLogin {
         DataBaseTxt.writeNewUser(file, user.getPlayerName() + split + user.getPlayerPassword());
 
     }
+
     public void login() {
         System.out.println("Login");
         System.out.println();
@@ -27,8 +30,7 @@ public class RegisterLogin {
         System.out.println("Password");
         String password = scan.next();
 
-        UserDataBase database = new UserDataBase();
-        List<User> users = database.getAllUsers();
+        List<User> users = getAllUsers();
 
         int userIndex = -1;
 
@@ -53,4 +55,20 @@ public class RegisterLogin {
         }
         System.out.println();
     }
+
+    public List<User> getAllUsers() {
+        List<User> usersLIst = new ArrayList<>();
+
+        String file = DataBaseTxt.Read("User.txt");
+        String[] splitUser = file.split("\n");
+
+        for (int i = 0; i < splitUser.length; i++) {
+            String[] data = splitUser[i].split(";");
+            User tempUser = new User(data[0], data[1]);
+            usersLIst.add(tempUser);
+        }
+
+        return usersLIst;
+    }
 }
+
