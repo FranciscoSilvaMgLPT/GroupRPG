@@ -1,10 +1,10 @@
-package Database;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDataBase {
 
     public List<User> getAllUsers(){
-        ArrayList<User> usersLIst = new ArrayList<>();
+        List<User> usersLIst = new ArrayList<>();
 
         String file = DataBaseTxt.Read("User.txt");
         String[] splitUser = file.split("\n");
