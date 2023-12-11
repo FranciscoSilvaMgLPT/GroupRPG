@@ -68,6 +68,9 @@ public class Field {
     }
 
     public void setFinish(boolean finish) {
+        if(finish){
+            this.setBlock(false);
+        }
         this.finish = finish;
     }
 
