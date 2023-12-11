@@ -82,13 +82,16 @@ public class Map {
         if (move.equals("D")) {
             tempX++;
         }
-
-        if (!map[tempY][tempX].isBlock() && tempY > 0 && tempX > 0) {
-            map[user.getY()][user.getX()].setUser(false);
-            user.setY(tempY);
-            user.setX(tempX);
-            map[user.getY()][user.getX()].setUser(true);
-        } else {
+        if(!(tempY<=0) && !(tempX <=0)) {
+            if (!map[tempY][tempX].isBlock() && tempY > 0 && tempX > 0) {
+                map[user.getY()][user.getX()].setUser(false);
+                user.setY(tempY);
+                user.setX(tempX);
+                map[user.getY()][user.getX()].setUser(true);
+            } else {
+                System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
+            }
+        }else{
             System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
         }
     }
