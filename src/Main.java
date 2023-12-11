@@ -1,9 +1,8 @@
 public class Main {
     public static void main(String[] args) {
 
-    GameManager gameManager = new GameManager();
-    gameManager.gameManager();
-
+        GameManager gameManager = new GameManager();
+        gameManager.initialMenu();
 
     }
 }
