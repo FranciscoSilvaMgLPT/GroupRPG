@@ -28,7 +28,11 @@ public class Field {
     }
 
     public void setBlock(boolean block) {
-        this.block = block;
+        if(isFinish()){
+            this.block=false;
+        }else {
+            this.block = block;
+        }
     }
 
     public boolean isCompleted() {
@@ -52,6 +56,10 @@ public class Field {
     }
 
     public void setStart(boolean start) {
+        if (start) {
+            this.setUser(true);
+            this.setBlock(true);
+        }
         this.start = start;
     }
 
