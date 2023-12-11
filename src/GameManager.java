@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
 public class GameManager {
+    FileManager fileManager = new FileManager();
+
+    User user = new User();
+    Scanner scan = new Scanner(System.in);
+    String choice;
+
     public void initialMenu() {
-        Scanner scan = new Scanner(System.in);
-        String choice;
         do {
-            RegisterLogin registerLogin = new RegisterLogin();
             System.out.println("Main Menu");
             System.out.println();
             System.out.println("1. Register");
@@ -16,10 +19,10 @@ public class GameManager {
             choice = scan.next();
             switch (choice) {
                 case "1":
-                    registerLogin.register();
+                    registerUser();
                     break;
                 case "2":
-                    registerLogin.login();
+                    loginUser();
                     break;
                 case "0":
                     System.out.println("Exit...");
@@ -27,12 +30,10 @@ public class GameManager {
                 default:
                     System.out.println("Enter a valid option:");
             }
-        } while(!choice.equals("0"));
+        } while (!choice.equals("0"));
     }
 
     public void playMenu() {
-        Scanner scan = new Scanner(System.in);
-        String choice;
         do {
             System.out.println("PLAY Menu");
             System.out.println();
@@ -43,7 +44,7 @@ public class GameManager {
             choice = scan.next();
             switch (choice) {
                 case "1":
-                    play();
+                    play(user);
                     break;
                 case "0":
                     System.out.println("Exit...");
@@ -51,17 +52,13 @@ public class GameManager {
                 default:
                     System.out.println("Enter a valid option:");
             }
-        } while(!choice.equals("0"));
+        } while (!choice.equals("0"));
     }
 
-    public static void play() {
-        Scanner scan = new Scanner(System.in);
-        Map map = new Map();
-        User user = new User();
+    public void play(User user) {
+        Map map = new Map(15, 30);
         map.createMap(user);
         map.CreateLimits();
-
-        String playerMove;
         do {
             map.showMap(user);
             System.out.println("Player Menu");
@@ -70,9 +67,32 @@ public class GameManager {
             System.out.println("\n0. Exit");
             System.out.println();
             System.out.print("Enter choice: ");
-            playerMove = scan.next();
-            map.checkUserMove(user,playerMove.toUpperCase());
-        } while(!playerMove.equals("0"));
+            choice = scan.next();
+            map.checkUserMove(user, choice.toUpperCase());
+        } while (!choice.equals("0"));
+    }
+
+    public void registerUser() {
+        System.out.println("Register");
+        System.out.println();
+        System.out.println("Username");
+        user.setPlayerName(scan.next());
+        System.out.println("Password");
+        user.setPlayerPassword(scan.next());
+        fileManager.saveUserLog(user);
+    }
+
+    public void loginUser() {
+        System.out.println("Login");
+        System.out.println();
+        System.out.println("Username");
+        String username = scan.next();
+        System.out.println("Password");
+        String password = scan.next();
+        if(fileManager.findUser(username, password)){
+            user =new User(username,password);
+            play(user);
+        }
     }
 
 }
