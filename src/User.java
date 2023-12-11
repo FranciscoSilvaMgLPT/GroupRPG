@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String playerName;
     private String playerPassword;
     private String playerBackgroundColor;
     private int playerPoints;
-    private ArrayList<Medal> playerMedals;
+    private List<Medal> playerMedals;
     private int x;
     private int y;
 
@@ -77,7 +78,7 @@ public class User {
         this.playerPoints = playerPoints;
     }
 
-    public ArrayList<Medal> getPlayerMedals() {
+    public List<Medal> getPlayerMedals() {
         return playerMedals;
     }
 
