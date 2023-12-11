@@ -7,6 +7,6 @@ This is a simple Java-based game with maps/levels. Players can explore environme
 - **Exit Door:** Locate the exit door to finish the game.
 
 ## Project Members
-- Ricardo Silva [@rickymoz]
-- Francisco Silva [@FranciscoSilvaMgLPT]
-- Paulo Barbosa [@zhonions]
+- **Ricardo Silva** [@rickymoz]
+- **Francisco Silva** [@FranciscoSilvaMgLPT]
+- **Paulo Barbosa** [@zhonions]
