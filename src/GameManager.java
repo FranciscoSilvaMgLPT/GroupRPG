@@ -1,3 +1,5 @@
+import FrontEnd.Colors;
+
 import java.util.Scanner;
 
 public class GameManager {
@@ -9,7 +11,7 @@ public class GameManager {
 
     public void initialMenu() {
         do {
-            System.out.println("Main Menu");
+            System.out.println("Initial menu");
             System.out.println();
             System.out.println("1. Register");
             System.out.println("2. Login");
@@ -33,7 +35,7 @@ public class GameManager {
         } while (!choice.equals("0"));
     }
 
-    public void playMenu() {
+    public void playMenu(User user) {
         do {
             System.out.println("PLAY Menu");
             System.out.println();
@@ -61,12 +63,12 @@ public class GameManager {
         map.CreateLimits();
         do {
             map.showMap(user);
-            System.out.println("Player Menu");
+            System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
+            System.out.print(Colors.WHITE_BRIGHT + "W" + Colors.RESET + " - UP | " + Colors.WHITE_BRIGHT + "S" + Colors.RESET + " - DOWN | " + Colors.WHITE_BRIGHT + "A" + Colors.RESET + " - LEFT | " + Colors.WHITE_BRIGHT + "D" + Colors.RESET + " - RIGHT\n");
+            System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "PLAYER OPTIONS" + Colors.RESET);
+            System.out.println(Colors.WHITE_BRIGHT + "0." + Colors.RESET + " Exit");
             System.out.println();
-            System.out.println("[WASD] - Move");
-            System.out.println("\n0. Exit");
-            System.out.println();
-            System.out.print("Enter choice: ");
+            System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             choice = scan.next();
             map.checkUserMove(user, choice.toUpperCase());
         } while (!choice.equals("0"));
@@ -91,7 +93,7 @@ public class GameManager {
         String password = scan.next();
         if(fileManager.findUser(username, password)){
             user =new User(username,password);
-            play(user);
+            playMenu(user);
         }
     }
 
