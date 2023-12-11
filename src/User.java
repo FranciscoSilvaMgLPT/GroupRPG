@@ -1,3 +1,5 @@
+import FrontEnd.Colors;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,7 @@ public class User {
     public User(String playerName, String playerPassword) {
         this.playerName = playerName;
         this.playerPassword = playerPassword;
-    }
-
-    public User(String playerName, String playerPassword, String playerBackgroundColor) {
-        this.playerName = playerName;
-        this.playerPassword = playerPassword;
-        this.playerBackgroundColor = playerBackgroundColor;
+        this.playerBackgroundColor= String.valueOf(Colors.BLUE_BACKGROUND_BRIGHT);
         this.playerPoints = 0;
         this.playerMedals= new ArrayList<>();
     }

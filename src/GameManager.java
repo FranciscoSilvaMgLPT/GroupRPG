@@ -3,12 +3,14 @@ import FrontEnd.Colors;
 import java.util.Scanner;
 
 public class GameManager {
+    FileManager fileManager = new FileManager();
+    User user = new User();
+    Scanner scan = new Scanner(System.in);
+    String choice;
+
     public void initialMenu() {
-        Scanner scan = new Scanner(System.in);
-        String choice;
         do {
-            RegisterLogin registerLogin = new RegisterLogin();
-            System.out.println("Main Menu");
+            System.out.println("Initial menu");
             System.out.println();
             System.out.println("1. Register");
             System.out.println("2. Login");
@@ -18,10 +20,10 @@ public class GameManager {
             choice = scan.next();
             switch (choice) {
                 case "1":
-                    registerLogin.register();
+                    registerUser();
                     break;
                 case "2":
-                    registerLogin.login();
+                    loginUser();
                     break;
                 case "0":
                     System.out.println("Exit...");
@@ -32,9 +34,7 @@ public class GameManager {
         } while (!choice.equals("0"));
     }
 
-    public void playMenu() {
-        Scanner scan = new Scanner(System.in);
-        String choice;
+    public void playMenu(User user) {
         do {
             System.out.println("PLAY Menu");
             System.out.println();
@@ -46,7 +46,7 @@ public class GameManager {
             choice = scan.next();
             switch (choice) {
                 case "1":
-                    play();
+                    play(user);
                     break;
                 case "2":
                     choiceBackground();
@@ -99,25 +99,47 @@ public class GameManager {
         playMenu();
     }
 
-    public static void play() {
-        Scanner scan = new Scanner(System.in);
-        Map map = new Map();
-        User user = new User();
+    public void play(User user) {
+        /*Map map = new Map(15, 30);
         map.createMap(user);
-        map.CreateLimits();
-
-        String playerMove;
+        map.createLimits();*/
+        Map map = new Map();
+        map.level1(user);
         do {
             map.showMap(user);
-            System.out.println("Player Menu");
+            System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
+            System.out.print(Colors.WHITE_BRIGHT + "W" + Colors.RESET + " - UP | " + Colors.WHITE_BRIGHT + "S" + Colors.RESET + " - DOWN | " + Colors.WHITE_BRIGHT + "A" + Colors.RESET + " - LEFT | " + Colors.WHITE_BRIGHT + "D" + Colors.RESET + " - RIGHT\n");
+            System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "PLAYER OPTIONS" + Colors.RESET);
+            System.out.println(Colors.WHITE_BRIGHT + "0." + Colors.RESET + " Exit");
             System.out.println();
-            System.out.println("[WASD] - Move");
-            System.out.println("\n0. Exit");
-            System.out.println();
-            System.out.print("Enter choice: ");
-            playerMove = scan.next();
-            map.checkUserMove(user, playerMove.toUpperCase());
-        } while (!playerMove.equals("0"));
+            System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
+            choice = scan.next();
+            map.checkUserMove(user, choice.toUpperCase());
+        } while (!choice.equals("0"));
+    }
+
+    public void registerUser() {
+        System.out.println(Colors.MAGENTA_BOLD+"\n\n📝REGISTER📝"+Colors.RESET);
+        System.out.println();
+        System.out.print("Username:");
+        user.setPlayerName(scan.next());
+        System.out.print("Password:");
+        user.setPlayerPassword(scan.next());
+        fileManager.saveUserLog(user);
+    }
+
+    public void loginUser() {
+        System.out.println(Colors.MAGENTA_BOLD+"\n\n🔑LOGIN🔑"+Colors.RESET);
+        System.out.println();
+        System.out.print("Username:");
+        String username = scan.next();
+        System.out.print("Password:");
+        String password = scan.next();
+        System.out.println();
+        if(fileManager.findUser(username, password)){
+            user =new User(username,password);
+            playMenu(user);
+        }
     }
 
 }

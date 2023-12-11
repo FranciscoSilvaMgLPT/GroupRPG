@@ -33,6 +33,7 @@ public enum Colors {
     MAGENTA_UNDERLINED("\033[4;35m"),   // MAGENTA
     CYAN_UNDERLINED("\033[4;36m"),      // CYAN
     WHITE_UNDERLINED("\033[4;37m"),     // WHITE
+    WHITE_BRIGHT_UNDERLINED("\033[4;97m"),     // WHITE
 
     // Background
     BLACK_BACKGROUND("\033[40m"),   // BLACK
