@@ -58,13 +58,12 @@ public class GameManager {
         Scanner scan = new Scanner(System.in);
         Map map = new Map();
         User user = new User();
-        map.createMap();
+        map.createMap(user);
         map.CreateLimits();
-        map.showMap();
 
         String playerMove;
         do {
-            map.updateMap();
+            map.showMap(user);
             System.out.println("Player Menu");
             System.out.println();
             System.out.println("[WASD] - Move");
@@ -72,7 +71,7 @@ public class GameManager {
             System.out.println();
             System.out.print("Enter choice: ");
             playerMove = scan.next();
-            user.move(playerMove.toUpperCase());
+            map.checkUserMove(user,playerMove.toUpperCase());
         } while(!playerMove.equals("0"));
     }
 
