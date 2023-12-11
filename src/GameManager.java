@@ -57,9 +57,11 @@ public class GameManager {
     }
 
     public void play(User user) {
-        Map map = new Map(15, 30);
+        /*Map map = new Map(15, 30);
         map.createMap(user);
-        map.CreateLimits();
+        map.createLimits();*/
+        Map map = new Map();
+        map.level1(user);
         do {
             map.showMap(user);
             System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
