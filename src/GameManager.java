@@ -57,11 +57,8 @@ public class GameManager {
     }
 
     public void play(User user) {
-        /*Map map = new Map(15, 30);
-        map.createMap(user);
-        map.createLimits();*/
         Map map = new Map();
-        map.level1(user);
+        map.level1Map(user);
         do {
             map.showMap(user);
             System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
@@ -79,10 +76,13 @@ public class GameManager {
         System.out.println(Colors.MAGENTA_BOLD+"\n\n📝REGISTER📝"+Colors.RESET);
         System.out.println();
         System.out.print("Username:");
-        user.setPlayerName(scan.next());
-        System.out.print("Password:");
-        user.setPlayerPassword(scan.next());
-        fileManager.saveUserLog(user);
+        String username = scan.next();
+        if(!fileManager.findUserByName(username)){
+            System.out.print("Password:");
+            String password= scan.next();
+            User newUser = new User(username,password);
+            fileManager.saveUserLog(newUser);
+        }
     }
 
     public void loginUser() {
@@ -93,8 +93,8 @@ public class GameManager {
         System.out.print("Password:");
         String password = scan.next();
         System.out.println();
-        if(fileManager.findUser(username, password)){
-            user =new User(username,password);
+        user=fileManager.findUser(username, password);
+        if(user!=null){
             playMenu(user);
         }
     }
