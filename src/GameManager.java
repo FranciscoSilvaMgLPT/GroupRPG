@@ -103,15 +103,22 @@ public class GameManager {
         Map map = new Map();
         map.level1Map(user);
         do {
-            map.showMap(user);
-            System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
-            System.out.print(Colors.WHITE_BRIGHT + "W" + Colors.RESET + " - UP | " + Colors.WHITE_BRIGHT + "S" + Colors.RESET + " - DOWN | " + Colors.WHITE_BRIGHT + "A" + Colors.RESET + " - LEFT | " + Colors.WHITE_BRIGHT + "D" + Colors.RESET + " - RIGHT\n");
-            System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "PLAYER OPTIONS" + Colors.RESET);
-            System.out.println(Colors.WHITE_BRIGHT + "0." + Colors.RESET + " Exit");
-            System.out.println();
-            System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
-            choice = scan.next();
-            map.checkUserMove(user, choice.toUpperCase());
+            if(map.getMap()[user.getY()][user.getX()].isUser()&&map.getMap()[user.getY()][user.getX()].isFinish()){
+                map.showMap(user);
+                System.out.println("PARABENS! ENTER ANY KEY TO CONTINUE TO LEVEL 2");
+                map.level2Map(user);
+                choice = scan.next();
+            }else {
+                map.showMap(user);
+                System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
+                System.out.print(Colors.WHITE_BRIGHT + "W" + Colors.RESET + " - UP | " + Colors.WHITE_BRIGHT + "S" + Colors.RESET + " - DOWN | " + Colors.WHITE_BRIGHT + "A" + Colors.RESET + " - LEFT | " + Colors.WHITE_BRIGHT + "D" + Colors.RESET + " - RIGHT\n");
+                System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "PLAYER OPTIONS" + Colors.RESET);
+                System.out.println(Colors.WHITE_BRIGHT + "0." + Colors.RESET + " Exit");
+                System.out.println();
+                System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
+                choice = scan.next();
+                map.checkUserMove(user, choice.toUpperCase());
+            }
         } while (!choice.equals("0"));
     }
 
@@ -120,7 +127,7 @@ public class GameManager {
         System.out.println();
         System.out.print("Username:");
         String username = scan.next();
-        if(!fileManager.findUserByName(username)){
+        if(!fileManager.isUsernameTaken(username)){
             System.out.print("Password:");
             String password= scan.next();
             User newUser = new User(username,password);

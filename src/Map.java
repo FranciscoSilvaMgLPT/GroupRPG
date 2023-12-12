@@ -97,6 +97,9 @@ public class Map {
         }
     }
 
+    public Field[][] getMap() {
+        return map;
+    }
     public void level1Map(User user){
         map = new Map(15,30).getMap();
         createMap(user);
@@ -105,9 +108,32 @@ public class Map {
         user.setY(0);
         map[user.getY()][user.getX()].setStart(true);
         map[11][29].setFinish(true);
+        map[9][9].setMission(true);
+        createVerticalWall(6,1,10);
+        createHorizontalWall(10,6,25);
     }
 
-    public Field[][] getMap() {
-        return map;
+    public void level2Map(User user){
+        map = new Map(15,30).getMap();
+        createMap(user);
+        createLimits();
+        user.setX(3);
+        user.setY(0);
+        map[user.getY()][user.getX()].setStart(true);
+        map[11][29].setFinish(true);
+        map[9][9].setMission(true);
     }
+
+    public void createHorizontalWall(int y, int x1, int x2){
+        for (int i = x1; i <= x2; i++) {
+            map[y][i].setBlock(true);
+        }
+    }
+
+    public void createVerticalWall(int x, int y1, int y2){
+        for (int i = y1; i <= y2; i++) {
+            map[i][x].setBlock(true);
+        }
+    }
+
 }
