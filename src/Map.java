@@ -6,6 +6,7 @@ public class Map {
 
     public Map() {
     }
+
     public Map(int y, int x) {
         this.map = new Field[y][x];
     }
