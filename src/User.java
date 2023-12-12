@@ -12,15 +12,24 @@ public class User {
     private int x;
     private int y;
 
+    private final String SEPARATOR = ";";
+
     public User() {
     }
 
     public User(String playerName, String playerPassword) {
         this.playerName = playerName;
         this.playerPassword = playerPassword;
-        this.playerBackgroundColor= Colors.BLUE_BACKGROUND_BRIGHT;
+        this.playerBackgroundColor = Colors.BLUE_BACKGROUND_BRIGHT;
         this.playerPoints = 0;
-        this.playerMedals= new ArrayList<>();
+        this.playerMedals = new ArrayList<>();
+    }
+
+    public User(String playerName, String playerPassword, Colors playerBackgroundColor, int playerPoints) {
+        this.playerName = playerName;
+        this.playerPassword = playerPassword;
+        this.playerBackgroundColor = playerBackgroundColor;
+        this.playerPoints = playerPoints;
     }
 
     //====== PLAYER METHODS ======\\
@@ -83,4 +92,8 @@ public class User {
         this.playerMedals = playerMedals;
     }
 
+    @Override
+    public String toString() {
+        return playerName + SEPARATOR + playerPassword + SEPARATOR + playerBackgroundColor.name() + SEPARATOR + playerPoints;
+    }
 }
