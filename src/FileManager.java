@@ -39,7 +39,7 @@ public class FileManager {
         return null;
     }
 
-    protected boolean findUserByName(String username) {
+    protected boolean isUsernameTaken(String username) {
         String[] lineSplited;
         try (BufferedReader reader = new BufferedReader(new FileReader(usersPath))) {
             String line;
