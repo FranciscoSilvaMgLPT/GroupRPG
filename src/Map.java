@@ -49,7 +49,7 @@ public class Map {
                     map[i][j].setSymbol("🎄");
                 }
                 if (map[i][j].isUser()) {
-                    map[i][j].setSymbol(Colors.BLUE_BACKGROUND_BRIGHT + map[i][j].getSymbol() + Colors.RESET);
+                    map[i][j].setSymbol(user.getPlayerBackgroundColor() + map[i][j].getSymbol() + Colors.RESET);
                 }
             }
         }
@@ -82,7 +82,7 @@ public class Map {
         if (move.equals("D")) {
             tempX++;
         }
-        if(!(tempY<=0) && !(tempX <=0)) {
+        if((!(tempY<=0) && !(tempX <=0))) {
             if (!map[tempY][tempX].isBlock() && tempY > 0 && tempX > 0) {
                 map[user.getY()][user.getX()].setUser(false);
                 user.setY(tempY);
@@ -96,7 +96,7 @@ public class Map {
         }
     }
 
-    public void level1(User user){
+    public void level1Map(User user){
         map = new Map(15,30).getMap();
         createMap(user);
         createLimits();

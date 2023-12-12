@@ -1,5 +1,2 @@
-paulinho;123
-richard;1234
-chico;1234
-a;a
-teste;teste
+a;a;RED_BACKGROUND_BRIGHT;0
+c;c;BLUE_BACKGROUND_BRIGHT;0
