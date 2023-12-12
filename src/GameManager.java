@@ -79,16 +79,16 @@ public class GameManager {
 
         switch (choice) {
             case "1":
-                user.setPlayerBackgroundColor(Colors.YELLOW_BACKGROUND + "◻️" + Colors.RESET);
+                user.setPlayerBackgroundColor(Colors.YELLOW_BACKGROUND);
                 break;
             case "2":
-                user.setPlayerBackgroundColor(Colors.CYAN_BACKGROUND + "◻️" + Colors.RESET);
+                user.setPlayerBackgroundColor(Colors.CYAN_BACKGROUND);
                 break;
             case "3":
-                user.setPlayerBackgroundColor(Colors.RED_BACKGROUND+ "◻️" + Colors.RESET);
+                user.setPlayerBackgroundColor(Colors.RED_BACKGROUND);
                 break;
             case "4":
-                user.setPlayerBackgroundColor(Colors.GREEN_BACKGROUND + "◻️" + Colors.RESET);
+                user.setPlayerBackgroundColor(Colors.GREEN_BACKGROUND);
                 break;
             case "0":
                 System.out.println("Exit...");

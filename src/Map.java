@@ -49,7 +49,7 @@ public class Map {
                     map[i][j].setSymbol("🎄");
                 }
                 if (map[i][j].isUser()) {
-                    map[i][j].setSymbol(Colors.BLUE_BACKGROUND_BRIGHT + map[i][j].getSymbol() + Colors.RESET);
+                    map[i][j].setSymbol(user.getPlayerBackgroundColor() + map[i][j].getSymbol() + Colors.RESET);
                 }
             }
         }

@@ -6,7 +6,7 @@ import java.util.List;
 public class User {
     private String playerName;
     private String playerPassword;
-    private String playerBackgroundColor;
+    private Colors playerBackgroundColor;
     private int playerPoints;
     private List<Medal> playerMedals;
     private int x;
@@ -18,7 +18,7 @@ public class User {
     public User(String playerName, String playerPassword) {
         this.playerName = playerName;
         this.playerPassword = playerPassword;
-        this.playerBackgroundColor= String.valueOf(Colors.BLUE_BACKGROUND_BRIGHT);
+        this.playerBackgroundColor= Colors.BLUE_BACKGROUND_BRIGHT;
         this.playerPoints = 0;
         this.playerMedals= new ArrayList<>();
     }
@@ -43,11 +43,11 @@ public class User {
         this.playerPassword = playerPassword;
     }
 
-    public String getPlayerBackgroundColor() {
+    public Colors getPlayerBackgroundColor() {
         return playerBackgroundColor;
     }
 
-    public void setPlayerBackgroundColor(String playerBackgroundColor) {
+    public void setPlayerBackgroundColor(Colors playerBackgroundColor) {
         this.playerBackgroundColor = playerBackgroundColor;
     }
 
