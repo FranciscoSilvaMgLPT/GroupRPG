@@ -2,6 +2,7 @@ import FrontEnd.Colors;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class GameManager {
     FileManager fileManager = new FileManager();
@@ -69,12 +70,12 @@ public class GameManager {
         System.out.println();
         System.out.println("Default Background: " + colorsList.get(0) + "◻️" + Colors.RESET);
         System.out.println();
-       /* colorsList.
-                subList(1, colorsList.size()).
-                forEach(color -> System.out.println(color + "◻️" + Colors.RESET));*/
-        for (int i = 1; i < colorsList.size(); i++) {
+        IntStream.range(0, colorsList.size() - 1)
+                .mapToObj(index -> (index+1) + ": " + colorsList.get(index + 1) + "◻️" + Colors.RESET)
+                .forEach(System.out::println);
+        /*for (int i = 1; i < colorsList.size(); i++) {
             System.out.println(i + ": " + colorsList.get(i) + "◻️" + Colors.RESET);
-        }
+        }*/
         System.out.println("0: Return to menu");
         if(choice.equals("0")){
             playMenu(user);
