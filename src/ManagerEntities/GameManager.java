@@ -1,4 +1,9 @@
+package ManagerEntities;
+
 import FrontEnd.Colors;
+import GameMap.Map;
+import Missions.Quiz.Quiz;
+import UserManager.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -42,6 +47,7 @@ public class GameManager {
             System.out.println();
             System.out.println("1. PLAY");
             System.out.println("2. Change your player background");
+            System.out.println("3. quiz");
             System.out.println("0. Exit the program");
             System.out.println();
             System.out.print("Enter choice: ");
@@ -52,6 +58,21 @@ public class GameManager {
                     break;
                 case "2":
                     choiceBackground();
+                    break;
+                case "3":
+                    Quiz quiz = new Quiz();
+                    long quiz1Level1 = quiz.playQuiz1Level1(user);
+                    long quiz2Level1 = quiz.playQuiz2Level1(user);
+                    long quiz3Level1 = quiz.playQuiz3Level1(user);
+                    long quiz1Level2 = quiz.playQuiz1Level2(user);
+                    long quiz2Level2 = quiz.playQuiz2Level2(user);
+                    long quiz3Level2 = quiz.playQuiz3Level2(user);
+
+                    long total = quiz1Level1 + quiz2Level1 + quiz3Level1 + quiz1Level2 + quiz2Level2 + quiz3Level2;
+
+                    System.out.println("User points: " + user.getPlayerPoints());
+                    System.out.println("User correction answers: " + total);
+
                     break;
                 case "0":
                     System.out.println("Exit...");
@@ -71,13 +92,13 @@ public class GameManager {
         System.out.println("Default Background: " + colorsList.get(0) + "◻️" + Colors.RESET);
         System.out.println();
         IntStream.range(0, colorsList.size() - 1)
-                .mapToObj(index -> (index+1) + ": " + colorsList.get(index + 1) + "◻️" + Colors.RESET)
+                .mapToObj(index -> (index + 1) + ": " + colorsList.get(index + 1) + "◻️" + Colors.RESET)
                 .forEach(System.out::println);
         /*for (int i = 1; i < colorsList.size(); i++) {
             System.out.println(i + ": " + colorsList.get(i) + "◻️" + Colors.RESET);
         }*/
         System.out.println("0: Return to menu");
-        if(choice.equals("0")){
+        if (choice.equals("0")) {
             playMenu(user);
         }
 
@@ -92,12 +113,12 @@ public class GameManager {
         Map map = new Map();
         map.level1Map(user);
         do {
-            if(map.getMap()[user.getY()][user.getX()].isUser()&&map.getMap()[user.getY()][user.getX()].isFinish()){
+            if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
                 map.showMap(user);
                 System.out.println("PARABENS! ENTER ANY KEY TO CONTINUE TO LEVEL 2");
                 map.level2Map(user);
                 choice = scan.next();
-            }else {
+            } else {
                 map.showMap(user);
                 System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
                 System.out.print(Colors.WHITE_BRIGHT + "W" + Colors.RESET + " - UP | " + Colors.WHITE_BRIGHT + "S" + Colors.RESET + " - DOWN | " + Colors.WHITE_BRIGHT + "A" + Colors.RESET + " - LEFT | " + Colors.WHITE_BRIGHT + "D" + Colors.RESET + " - RIGHT\n");
@@ -112,28 +133,28 @@ public class GameManager {
     }
 
     public void registerUser() {
-        System.out.println(Colors.MAGENTA_BOLD+"\n\n📝REGISTER📝"+Colors.RESET);
+        System.out.println(Colors.MAGENTA_BOLD + "\n\n📝REGISTER📝" + Colors.RESET);
         System.out.println();
         System.out.print("Username:");
         String username = scan.next();
-        if(!fileManager.isUsernameTaken(username)){
+        if (!fileManager.isUsernameTaken(username)) {
             System.out.print("Password:");
-            String password= scan.next();
-            User newUser = new User(username,password);
+            String password = scan.next();
+            User newUser = new User(username, password);
             fileManager.saveUserLog(newUser);
         }
     }
 
     public void loginUser() {
-        System.out.println(Colors.MAGENTA_BOLD+"\n\n🔑LOGIN🔑"+Colors.RESET);
+        System.out.println(Colors.MAGENTA_BOLD + "\n\n🔑LOGIN🔑" + Colors.RESET);
         System.out.println();
         System.out.print("Username:");
         String username = scan.next();
         System.out.print("Password:");
         String password = scan.next();
         System.out.println();
-        user=fileManager.findUser(username, password);
-        if(user!=null){
+        user = fileManager.findUser(username, password);
+        if (user != null) {
             playMenu(user);
         }
     }
