@@ -1,6 +1,8 @@
 import FrontEnd.Colors;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class GameManager {
     FileManager fileManager = new FileManager();
@@ -63,39 +65,26 @@ public class GameManager {
     public void choiceBackground() {
         Scanner scan = new Scanner(System.in);
         User user = new User();
-        String choice;
+        List<Colors> colorsList = List.of(Colors.BLUE_BACKGROUND_BRIGHT, Colors.YELLOW_BACKGROUND, Colors.CYAN_BACKGROUND, Colors.RED_BACKGROUND, Colors.GREEN_BACKGROUND);
         System.out.println("Background player Menu");
         System.out.println();
-        System.out.println("Default Background: " + Colors.BLUE_BACKGROUND_BRIGHT + "◻️" + Colors.RESET);
+        System.out.println("Default Background: " + colorsList.get(0) + "◻️" + Colors.RESET);
         System.out.println();
-        System.out.println("1. " + Colors.YELLOW_BACKGROUND + "◻️" + Colors.RESET);
-        System.out.println("2. " + Colors.CYAN_BACKGROUND + "◻️" + Colors.RESET);
-        System.out.println("3. " + Colors.RED_BACKGROUND + "◻️" + Colors.RESET);
-        System.out.println("4. " + Colors.GREEN_BACKGROUND + "◻️" + Colors.RESET);
-        System.out.println("0. Exit the program");
+        IntStream.range(0, colorsList.size() - 1)
+                .mapToObj(index -> (index+1) + ": " + colorsList.get(index + 1) + "◻️" + Colors.RESET)
+                .forEach(System.out::println);
+        /*for (int i = 1; i < colorsList.size(); i++) {
+            System.out.println(i + ": " + colorsList.get(i) + "◻️" + Colors.RESET);
+        }*/
+        System.out.println("0: Return to menu");
+        if(choice.equals("0")){
+            playMenu(user);
+        }
+
         System.out.println();
         System.out.print("Enter choice: ");
-        choice = scan.next();
-
-        switch (choice) {
-            case "1":
-                user.setPlayerBackgroundColor(Colors.YELLOW_BACKGROUND);
-                break;
-            case "2":
-                user.setPlayerBackgroundColor(Colors.CYAN_BACKGROUND);
-                break;
-            case "3":
-                user.setPlayerBackgroundColor(Colors.RED_BACKGROUND);
-                break;
-            case "4":
-                user.setPlayerBackgroundColor(Colors.GREEN_BACKGROUND);
-                break;
-            case "0":
-                System.out.println("Exit...");
-                break;
-            default:
-                System.out.println("Enter a valid option:");
-        }
+        String choice = scan.next();
+        user.setPlayerBackgroundColor(colorsList.get(Integer.parseInt(choice)));
         playMenu(user);
     }
 
