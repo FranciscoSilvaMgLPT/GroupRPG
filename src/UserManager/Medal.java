@@ -1,3 +1,5 @@
+package UserManager;
+
 public class Medal {
 
     int id;

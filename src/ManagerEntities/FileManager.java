@@ -1,4 +1,7 @@
+package ManagerEntities;
+
 import FrontEnd.Colors;
+import UserManager.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ public class FileManager {
             writer.write(user.toString());
             writer.newLine();
             writer.close();
-            System.out.println(Colors.GREEN + "User \"" + user.getPlayerName() + "\" created, saved to the file successfully." + Colors.RESET);
+            System.out.println(Colors.GREEN + "UserManager.User \"" + user.getPlayerName() + "\" created, saved to the file successfully." + Colors.RESET);
         } catch (IOException e) {
             System.err.println("Error writing to the file: " + e.getMessage());
         }
@@ -27,12 +30,12 @@ public class FileManager {
             while ((line = reader.readLine()) != null) {
                 lineSplited = line.split(";");
                 if (lineSplited[0].equals(username) && lineSplited[1].equals(password)) {
-                    System.out.println("User \"" + username + "\" found!!!\n");
+                    System.out.println("UserManager.User \"" + username + "\" found!!!\n");
                     reader.close();
                     return new User(lineSplited[0], lineSplited[1], Colors.valueOf(lineSplited[2]), Integer.parseInt(lineSplited[3]));
                 }
             }
-            System.out.println(Colors.RED + "\nUser not found." + Colors.RESET);
+            System.out.println(Colors.RED + "\nUserManager.User not found." + Colors.RESET);
         } catch (IOException e) {
             System.err.println("Error reading from the file: " + e.getMessage());
         }

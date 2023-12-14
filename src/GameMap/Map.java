@@ -1,4 +1,7 @@
+package GameMap;
+
 import FrontEnd.Colors;
+import UserManager.User;
 
 public class Map {
     private Field[][] map;
