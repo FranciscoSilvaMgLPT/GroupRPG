@@ -13,7 +13,7 @@ public class RockPaperScissor {
     private String playerResponse = "";
     private String cpuResponse = "";
 
-    public void rockPaperScissorMission() {
+    public int rockPaperScissorMission() {
         Scanner scan = new Scanner(System.in);
         System.out.println(Colors.CYAN_BOLD_BRIGHT + "0 - Rock");
         System.out.println("1 - Paper");
@@ -36,7 +36,7 @@ public class RockPaperScissor {
             default:
                 // Handle invalid input if needed
                 System.out.println("Invalid number. Please try again.");
-                return;
+                rockPaperScissorMission();
         }
 
         switch (cpu) {
@@ -53,10 +53,10 @@ public class RockPaperScissor {
                 // Handle unexpected CPU response if needed
                 break;
         }
-        checkWhoWon();
+        return checkWhoWon();
     }
 
-    private void checkWhoWon() {
+    private int checkWhoWon() {
         String outcomeString = Colors.MAGENTA + "\nThe computer picked " + cpuResponse + ". You picked " + playerResponse + Colors.RESET;
         String outcomeLose = outcomeString + Colors.RED_BRIGHT + ". You lose!" + Colors.RESET;
         String outcomeWon = outcomeString + Colors.GREEN_BRIGHT + ". You won!" + Colors.RESET;
@@ -66,14 +66,17 @@ public class RockPaperScissor {
                 (playerResponse.equals("✋") && cpuResponse.equals("✌\uFE0F")) ||
                 (playerResponse.equals("✊") && cpuResponse.equals("✋"))) {
             System.out.println(outcomeLose);
+            return 0;
         } else if ((playerResponse.equals("✌\uFE0F") && cpuResponse.equals("paper")) ||
                 (playerResponse.equals("✋") && cpuResponse.equals("✊")) ||
                 (playerResponse.equals("✊") && cpuResponse.equals("✌\uFE0F"))) {
             // Player won
             System.out.println(outcomeWon);
+            return 2;
         } else {
             // Both players entered the same response, so it's a draw
             System.out.println(outcomeDraw);
+            return 1;
         }
     }
 }

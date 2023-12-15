@@ -49,7 +49,10 @@ public class Map {
                 if (map[i][j].isStart()) {
                     map[i][j].setSymbol("🟦");
                 }
-                if (map[i][j].isFinish()) {
+                if (map[i][j].isNextFloor()) {
+                    map[i][j].setSymbol("▍");
+                }
+                if(map[i][j].isFinish()){
                     map[i][j].setSymbol("🎄");
                 }
                 if (map[i][j].isUser()) {
@@ -86,8 +89,7 @@ public class Map {
         if (move.equals("D")) {
             tempX++;
         }
-        if((!(tempY<=0) && !(tempX <=0))) {
-            if (!map[tempY][tempX].isBlock() && tempY > 0 && tempX > 0) {
+            if ((!map[tempY][tempX].isBlock() && tempY > 0 && tempX > 0) || map[tempY][tempX].isFinish() ) {
                 map[user.getY()][user.getX()].setUser(false);
                 user.setY(tempY);
                 user.setX(tempX);
@@ -95,9 +97,6 @@ public class Map {
             } else {
                 System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
             }
-        }else{
-            System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
-        }
     }
 
     public Field[][] getMap() {
@@ -110,8 +109,10 @@ public class Map {
         user.setX(3);
         user.setY(0);
         map[user.getY()][user.getX()].setStart(true);
-        map[11][29].setFinish(true);
-        map[9][9].setMission(true);
+        map[11][29].setNextFloor(true);
+        map[7][9].setMission(true,1);
+        map[12][20].setMission(true,2);
+        map[7][23].setMission(true,3);
         createVerticalWall(6,1,10);
         createHorizontalWall(10,6,25);
     }
@@ -123,8 +124,10 @@ public class Map {
         user.setX(3);
         user.setY(0);
         map[user.getY()][user.getX()].setStart(true);
-        map[11][29].setFinish(true);
-        map[9][9].setMission(true);
+        map[13][0].setFinish(true);
+        map[9][9].setMission(true,4);
+        map[4][19].setMission(true,5);
+        map[5][25].setMission(true,6);
     }
 
     public void createHorizontalWall(int y, int x1, int x2){
