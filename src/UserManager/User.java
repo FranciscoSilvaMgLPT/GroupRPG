@@ -10,7 +10,8 @@ public class User {
     private String playerPassword;
     private Colors playerBackgroundColor;
     private int playerPoints;
-    private List<Medal> playerMedals;
+    private int playerGifts;
+    private int cheats;
     private int x;
     private int y;
 
@@ -24,7 +25,8 @@ public class User {
         this.playerPassword = playerPassword;
         this.playerBackgroundColor = Colors.BLUE_BACKGROUND_BRIGHT;
         this.playerPoints = 0;
-        this.playerMedals = new ArrayList<>();
+        this.playerGifts=0;
+        this.cheats=1;
     }
 
     public User(String playerName, String playerPassword, Colors playerBackgroundColor, int playerPoints) {
@@ -32,6 +34,7 @@ public class User {
         this.playerPassword = playerPassword;
         this.playerBackgroundColor = playerBackgroundColor;
         this.playerPoints = playerPoints;
+        this.cheats=1;
     }
 
     //====== PLAYER METHODS ======\\
@@ -62,6 +65,21 @@ public class User {
         this.playerBackgroundColor = playerBackgroundColor;
     }
 
+    public int getPlayerGifts() {
+        return playerGifts;
+    }
+
+    public void setPlayerGifts(int playerGifts) {
+        this.playerGifts = playerGifts;
+    }
+
+    public int getCheats() {
+        return cheats;
+    }
+    public void setCheats(int cheats) {
+        this.cheats = cheats;
+    }
+
     public int getX() {
         return x;
     }
@@ -84,14 +102,6 @@ public class User {
 
     public void setPlayerPoints(int playerPoints) {
         this.playerPoints = playerPoints;
-    }
-
-    public List<Medal> getPlayerMedals() {
-        return playerMedals;
-    }
-
-    public void setPlayerMedals(ArrayList<Medal> playerMedals) {
-        this.playerMedals = playerMedals;
     }
 
     @Override
