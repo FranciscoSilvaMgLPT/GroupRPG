@@ -106,6 +106,7 @@ public class GameManager {
         GameManager gameManager = new GameManager();
         map.level1Map(user);
         do {
+
             if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isNextFloor()) {
                 map.showMap(user);
                 System.out.println("PARABENS! ENTER ANY KEY TO CONTINUE TO LEVEL 2");
@@ -115,8 +116,9 @@ public class GameManager {
             if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isMission()) {
                 if (map.getMap()[user.getY()][user.getX()].isCompleted()) {
                     try {
-                        System.out.println("QUIZZ ALREADY COMPLETED!");
-                        Thread.sleep(500);
+                        System.out.println(Colors.RED_BOLD_BRIGHT + "\nTHAT MISSION IS ALREADY COMPLETED!\n" + Colors.RESET);
+                        Thread.sleep(1000);
+                        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
