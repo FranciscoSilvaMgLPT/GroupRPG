@@ -58,9 +58,9 @@ public class RockPaperScissor {
 
     private int checkWhoWon() {
         String outcomeString = Colors.MAGENTA + "\nThe computer picked " + cpuResponse + ". You picked " + playerResponse + Colors.RESET;
-        String outcomeLose = outcomeString + Colors.RED_BRIGHT + ". You lose!" + Colors.RESET;
-        String outcomeWon = outcomeString + Colors.GREEN_BRIGHT + ". You won!" + Colors.RESET;
-        String outcomeDraw = outcomeString + Colors.YELLOW_BRIGHT + "too. It's a Draw!!" + Colors.RESET;
+        String outcomeLose = outcomeString + Colors.RED_BRIGHT + ". You lose! (0 points)" + Colors.RESET;
+        String outcomeWon = outcomeString + Colors.GREEN_BRIGHT + ". You won! (+2 points)" + Colors.RESET;
+        String outcomeDraw = outcomeString + Colors.YELLOW_BRIGHT + "too. It's a Draw!! (+1 point)" + Colors.RESET;
         // Use equals to compare strings, not ==
         if ((playerResponse.equals("✌\uFE0F") && cpuResponse.equals("✊")) ||
                 (playerResponse.equals("✋") && cpuResponse.equals("✌\uFE0F")) ||

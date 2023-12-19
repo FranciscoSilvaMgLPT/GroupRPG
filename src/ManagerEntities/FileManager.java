@@ -67,12 +67,26 @@ public class FileManager {
         try (BufferedReader reader = new BufferedReader(new FileReader(usersPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                lineSplited = line.split(";");
-                if (lineSplited[0].equals(user.getPlayerName())) {
-
-                    reader.close();
+                userList.add(line);
+            }
+            for (int i = 0; i < userList.size(); i++) {
+                lineSplited = userList.get(i).split(";");
+                if (lineSplited[0].equals(user.getPlayerName()) && lineSplited[1].equals(user.getPlayerPassword())) {
+                    userList.set(i, user.toString());
+                    System.out.println("Updated!");
                 }
             }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(usersPath, false))) {
+                writer.write(user.toString());
+                writer.newLine();
+                writer.close();
+                System.out.println(Colors.GREEN + user.getPlayerName() + " created, saved to the file successfully." + Colors.RESET);
+            } catch (IOException e) {
+                System.err.println("Error writing to the file: " + e.getMessage());
+            }
+
+
         } catch (IOException e) {
             System.err.println("Error reading from the file: " + e.getMessage());
         }
