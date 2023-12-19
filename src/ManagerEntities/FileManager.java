@@ -9,16 +9,15 @@ import java.util.List;
 
 public class FileManager {
     final String usersPath = "src/Database/Users.txt";
-    final String userPath = "src/Database/UserObjects";
 
     protected void saveUserLog(User user) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(usersPath, true))) {
             writer.write(user.toString());
             writer.newLine();
             writer.close();
-            System.out.println(Colors.GREEN + user.getPlayerName() + " created, saved to the file successfully." + Colors.RESET);
+            System.out.println(Colors.GREEN + user.getPlayerName() + " CREATED AND SAVED TO THE FILE SUCCESSFULY!" + Colors.RESET);
         } catch (IOException e) {
-            System.err.println("Error writing to the file: " + e.getMessage());
+            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
         }
     }
 
@@ -30,14 +29,14 @@ public class FileManager {
             while ((line = reader.readLine()) != null) {
                 lineSplited = line.split(";");
                 if (lineSplited[0].equals(username) && lineSplited[1].equals(password)) {
-                    System.out.println("User " + username + " found!!!\n");
+                    System.out.println(Colors.GREEN_BOLD_BRIGHT + "USER " + username + " FOUND!\n" + Colors.RESET);
                     reader.close();
                     return new User(lineSplited[0], lineSplited[1], Colors.valueOf(lineSplited[2]), Integer.parseInt(lineSplited[3]));
                 }
             }
-            System.out.println(Colors.RED + "\n" + username + " not found." + Colors.RESET);
+            System.out.println(Colors.RED + "\nUSER " + username + " NOT FOUND!" + Colors.RESET);
         } catch (IOException e) {
-            System.err.println("Error reading from the file: " + e.getMessage());
+            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
         }
         return null;
     }
@@ -50,13 +49,13 @@ public class FileManager {
             while ((line = reader.readLine()) != null) {
                 lineSplited = line.split(";");
                 if (lineSplited[0].equals(username)) {
-                    System.out.println(Colors.RED + username + " already exists!!!\n" + Colors.RESET);
+                    System.out.println(Colors.RED + username + " ALREADY EXISTS!!!\n" + Colors.RESET);
                     reader.close();
                     return true;
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading from the file: " + e.getMessage());
+            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
         }
         return false;
     }
@@ -74,7 +73,7 @@ public class FileManager {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading from the file: " + e.getMessage());
+            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
         }
     }
 }
