@@ -156,6 +156,7 @@ public class GameManager {
             choice = scan.next();
             map.checkUserMove(user, choice.toUpperCase());
             if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
+                map.showMap(user);
                 System.out.println(Colors.YELLOW_BOLD_BRIGHT + "\nYOU NOW HAVE A CHANCE TO MAKE MORE POINTS!" + Colors.WHITE_BOLD_BRIGHT + "\nWIN -> " + Colors.GREEN_BOLD_BRIGHT + " 2 POINTS " + Colors.WHITE_BOLD_BRIGHT + "\nDRAW -> " + Colors.GREEN_BOLD_BRIGHT + " 1 POINT " + Colors.YELLOW_BOLD_BRIGHT + "\nYOU HAVE 3 CHANCES, READY? GO!\n" + Colors.RESET);
                 System.out.println(Colors.YELLOW_BOLD_BRIGHT + "CHOOSE YOUR GUN!" + Colors.RESET);
                 int playRockTime=0;
