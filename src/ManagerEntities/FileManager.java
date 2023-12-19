@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileManager {
-    final String FILE_PATH = "/Users/mindera/Documents/School/projects/GroupRPG/src/Database/Users.txt";
+    final String FILE_PATH = "src/Database/Users.txt";
 
     protected void saveNewUser(User user) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
