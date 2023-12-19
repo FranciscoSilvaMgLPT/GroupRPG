@@ -8,6 +8,7 @@ import UserManager.User;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GameManager {
@@ -18,8 +19,12 @@ public class GameManager {
     String choice;
     RockPaperScissor rockPaperScissor = new RockPaperScissor();
 
+    List<User> userList = fileManager.readDatabase();
+    ;
+
     public void initialMenu() {
         do {
+
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "INITIAL MENU");
             System.out.println("1. Register");
             System.out.println("2. Login");
@@ -45,13 +50,13 @@ public class GameManager {
     public void playMenu(User user) {
 
         do {
-            System.out.println(Colors.WHITE_BOLD_BRIGHT +"PLAY Menu");
+            System.out.println(Colors.WHITE_BOLD_BRIGHT + "PLAY Menu");
             System.out.println("1. PLAY");
             System.out.println("2. Change your player background");
             System.out.println("3. Cheats");
             System.out.println("4. Ranking");
             System.out.println("5. Save");
-            System.out.println("0. Exit the program");
+            System.out.println("0. Logout");
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             choice = scan.next();
             switch (choice) {
@@ -68,9 +73,13 @@ public class GameManager {
 
                     break;
                 case "5":
-                    fileManager.updateUser(user);
+                    fileManager.writeDatabase(userList);
+                    break;
                 case "0":
-                    System.out.println(Colors.YELLOW_BRIGHT + "\nExiting...\n" + Colors.RESET);
+                    System.out.println(Colors.YELLOW_BRIGHT + "\nLogging out\n" + Colors.RESET);
+                    fileManager.writeDatabase(userList);
+                    user=null;
+                    initialMenu();
                     break;
                 default:
                     System.out.println(Colors.RED_BOLD_BRIGHT + "\nInvalid option!\n" + Colors.RESET);
@@ -124,29 +133,30 @@ public class GameManager {
                     }
                 } else {
                     map.showMap(user);
-                    if(map.getMap()[user.getY()][user.getX()].getMissionQuizz()==1) {
+                    if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 1) {
                         quiz.playQuiz1Level1(user);
                     }
-                    if(map.getMap()[user.getY()][user.getX()].getMissionQuizz()==2) {
+                    if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 2) {
                         quiz.playQuiz2Level1(user);
                     }
-                    if(map.getMap()[user.getY()][user.getX()].getMissionQuizz()==3) {
+                    if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 3) {
                         quiz.playQuiz3Level1(user);
                     }
-                    if(map.getMap()[user.getY()][user.getX()].getMissionQuizz()==4) {
+                    if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 4) {
                         quiz.playQuiz1Level2(user);
                     }
-                    if(map.getMap()[user.getY()][user.getX()].getMissionQuizz()==5) {
+                    if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 5) {
                         quiz.playQuiz2Level2(user);
                     }
-                    if(map.getMap()[user.getY()][user.getX()].getMissionQuizz()==6) {
+                    if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 6) {
                         quiz.playQuiz3Level2(user);
                     }
                     map.getMap()[user.getY()][user.getX()].setCompleted(true);
-                    user.setPlayerGifts(user.getPlayerGifts()+1);
+                    user.setPlayerGifts(user.getPlayerGifts() + 1);
                 }
             }
             map.showMap(user);
+            System.out.println(Colors.YELLOW_BOLD_BRIGHT + "CURRENT POINTS: " + user.getPlayerPoints() + Colors.RESET);
             System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "KEYS TO MOVE" + Colors.RESET);
             System.out.print(Colors.WHITE_BRIGHT + "W" + Colors.RESET + " - UP | " + Colors.WHITE_BRIGHT + "S" + Colors.RESET + " - DOWN | " + Colors.WHITE_BRIGHT + "A" + Colors.RESET + " - LEFT | " + Colors.WHITE_BRIGHT + "D" + Colors.RESET + " - RIGHT\n");
             System.out.println("\n" + Colors.WHITE_BRIGHT_UNDERLINED + "PLAYER OPTIONS" + Colors.RESET);
@@ -156,17 +166,16 @@ public class GameManager {
             choice = scan.next();
             map.checkUserMove(user, choice.toUpperCase());
             if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
-                map.showMap(user);
                 System.out.println(Colors.YELLOW_BOLD_BRIGHT + "\nYOU NOW HAVE A CHANCE TO MAKE MORE POINTS!" + Colors.WHITE_BOLD_BRIGHT + "\nWIN -> " + Colors.GREEN_BOLD_BRIGHT + " 2 POINTS " + Colors.WHITE_BOLD_BRIGHT + "\nDRAW -> " + Colors.GREEN_BOLD_BRIGHT + " 1 POINT " + Colors.YELLOW_BOLD_BRIGHT + "\nYOU HAVE 3 CHANCES, READY? GO!\n" + Colors.RESET);
                 System.out.println(Colors.YELLOW_BOLD_BRIGHT + "CHOOSE YOUR GUN!" + Colors.RESET);
-                int playRockTime=0;
-                while (playRockTime<3) {
-                    user.setPlayerPoints(user.getPlayerPoints()+rockPaperScissor.rockPaperScissorMission());
+                int playRockTime = 0;
+                while (playRockTime < 3) {
+                    user.setPlayerPoints(user.getPlayerPoints() + rockPaperScissor.rockPaperScissorMission());
                     playRockTime++;
                 }
                 System.out.println(Colors.GREEN_BOLD_BRIGHT + "\nCONGRATZZZZZ!!! YOU REACHED THE CHRISTMAS TREE!"
-                        +(user.getPlayerGifts()==0?" " + Colors.RED_BOLD_BRIGHT + "BUT SADLY YOU GATHER 0 GIFTS! 😫" + Colors.RESET : " WELL DONE! YOU BROUGHT "+user.getPlayerGifts()+" GIFTS! 🥳🎁" + Colors.RESET));
-                System.out.println(Colors.WHITE_BOLD_BRIGHT + "YOU MADE "+user.getPlayerPoints()+" POINTS\n" + Colors.RESET);
+                        + (user.getPlayerGifts() == 0 ? " " + Colors.RED_BOLD_BRIGHT + "BUT SADLY YOU GATHER 0 GIFTS! 😫" + Colors.RESET : " WELL DONE! YOU BROUGHT " + user.getPlayerGifts() + " GIFTS! 🥳🎁" + Colors.RESET));
+                System.out.println(Colors.WHITE_BOLD_BRIGHT + "YOU MADE " + user.getPlayerPoints() + " POINTS\n" + Colors.RESET);
                 try {
                     Thread.sleep(500);
                     gameManager.playMenu(user);
@@ -187,8 +196,10 @@ public class GameManager {
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "PASSWORD" + Colors.RESET);
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             String password = scan.next();
-            User newUser = new User(username, password);
-            fileManager.saveUserLog(newUser);
+            userList.add(new User(username, password));
+            fileManager.writeDatabase(userList);
+        } else {
+            System.out.println(Colors.RED_BOLD_BRIGHT + "THAT USERNAME IS ALREADY TAKEAN!" + Colors.RESET);
         }
     }
 
@@ -202,10 +213,14 @@ public class GameManager {
         System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
         String password = scan.next();
         System.out.println();
-        user = fileManager.findUser(username, password);
-        if (user != null) {
-            playMenu(user);
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getPlayerName().equals(username) && userList.get(i).getPlayerPassword().equals(password)) {
+                user = userList.get(i);
+                playMenu(user);
+            }
         }
+            System.out.println("USER NOT FOUND");
+
     }
 
     public void cheats(User user) {
@@ -216,7 +231,7 @@ public class GameManager {
                 user.setPlayerPoints(user.getPlayerPoints() + 10);
                 System.out.println(Colors.BLUE_BOLD_BRIGHT + "\nALRIGHT! I GIVE UP! 10 POINTS FOR YOU! 😘\n" + Colors.RESET);
             }
-            user.setCheats(user.getCheats()+1);
+            user.setCheats(user.getCheats() + 1);
             Thread.sleep(500);
         } catch (Exception e) {
             System.out.println(e.getMessage());

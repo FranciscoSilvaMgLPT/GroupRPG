@@ -2,9 +2,6 @@ package UserManager;
 
 import FrontEnd.Colors;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
     private String playerName;
     private String playerPassword;
@@ -15,7 +12,7 @@ public class User {
     private int x;
     private int y;
 
-    private final String SEPARATOR = ";";
+    private final String SEPARATOR = "|";
 
     public User() {
     }
@@ -29,13 +26,15 @@ public class User {
         this.cheats=1;
     }
 
-    public User(String playerName, String playerPassword, Colors playerBackgroundColor, int playerPoints) {
+    public User(String playerName, String playerPassword, String playerBackgroundColor, int playerPoints) {
         this.playerName = playerName;
         this.playerPassword = playerPassword;
-        this.playerBackgroundColor = playerBackgroundColor;
+        this.playerBackgroundColor = Colors.valueOf(playerBackgroundColor);
         this.playerPoints = playerPoints;
         this.cheats=1;
     }
+
+
 
     //====== PLAYER METHODS ======\\
 
