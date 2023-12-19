@@ -50,6 +50,7 @@ public class GameManager {
             System.out.println("2. Change your player background");
             System.out.println("3. Cheats");
             System.out.println("4. Ranking");
+            System.out.println("5. Save");
             System.out.println("0. Exit the program");
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             choice = scan.next();
@@ -63,6 +64,11 @@ public class GameManager {
                 case "3":
                     cheats(user);
                     break;
+                case "4":
+
+                    break;
+                case "5":
+                    fileManager.updateUser(user);
                 case "0":
                     System.out.println(Colors.YELLOW_BRIGHT + "\nExiting...\n" + Colors.RESET);
                     break;

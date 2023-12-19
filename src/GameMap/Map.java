@@ -124,10 +124,20 @@ public class Map {
         user.setX(3);
         user.setY(0);
         map[user.getY()][user.getX()].setStart(true);
-        map[13][0].setFinish(true);
+        map[12][2].setFinish(true);
         map[9][9].setMission(true,4);
         map[4][19].setMission(true,5);
-        map[5][25].setMission(true,6);
+        map[13][28].setMission(true,6);
+        createVerticalWall(25,4,14);
+        createHorizontalWall(12,27,28);
+        createHorizontalWall(8,27,28);
+        createHorizontalWall(4,27,28);
+        createHorizontalWall(10,26,27);
+        createHorizontalWall(6,26,27);
+        createHorizontalWall(6,1,14);
+        createHorizontalWall(8,1,10);
+        createHorizontalWall(10,1,19);
+
     }
 
     public void createHorizontalWall(int y, int x1, int x2){
