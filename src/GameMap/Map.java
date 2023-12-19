@@ -89,7 +89,8 @@ public class Map {
         if (move.equals("D")) {
             tempX++;
         }
-            if ((!map[tempY][tempX].isBlock() && tempY > 0 && tempX > 0) || map[tempY][tempX].isFinish() ) {
+        if(tempY > 0 && tempX > 0){
+            if (!map[tempY][tempX].isBlock() || map[tempY][tempX].isFinish() ) {
                 map[user.getY()][user.getX()].setUser(false);
                 user.setY(tempY);
                 user.setX(tempX);
@@ -97,6 +98,9 @@ public class Map {
             } else {
                 System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
             }
+        }else {
+            System.out.println(Colors.RED + "\nYou cant go there!\n" + Colors.RESET);
+        }
     }
 
     public Field[][] getMap() {
