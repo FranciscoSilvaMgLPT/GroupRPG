@@ -6,12 +6,13 @@ import UserManager.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class FileManager {
-    final String usersPath = "src/Database/Users.txt";
+    final String FILE_PATH = "/Users/mindera/Documents/School/projects/GroupRPG/src/Database/Users.txt";
 
-    protected void saveUserLog(User user) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(usersPath, true))) {
+    protected void saveNewUser(User user) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             writer.write(user.toString());
             writer.newLine();
             writer.close();
@@ -21,73 +22,63 @@ public class FileManager {
         }
     }
 
-    protected User findUser(String username, String password) {
-        String[] lineSplited;
-        try (BufferedReader reader = new BufferedReader(new FileReader(usersPath))) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                lineSplited = line.split(";");
-                if (lineSplited[0].equals(username) && lineSplited[1].equals(password)) {
-                    System.out.println(Colors.GREEN_BOLD_BRIGHT + "USER " + username + " FOUND!\n" + Colors.RESET);
-                    reader.close();
-                    return new User(lineSplited[0], lineSplited[1], Colors.valueOf(lineSplited[2]), Integer.parseInt(lineSplited[3]));
-                }
-            }
-            System.out.println(Colors.RED + "\nUSER " + username + " NOT FOUND!" + Colors.RESET);
-        } catch (IOException e) {
-            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
-        }
-        return null;
-    }
-
-    protected boolean isUsernameTaken(String username) {
-        String[] lineSplited;
-        try (BufferedReader reader = new BufferedReader(new FileReader(usersPath))) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                lineSplited = line.split(";");
-                if (lineSplited[0].equals(username)) {
-                    System.out.println(Colors.RED + username + " ALREADY EXISTS!!!\n" + Colors.RESET);
-                    reader.close();
+    public boolean isUsernameTaken(String username) {
+        List<User> userList = readDatabase();
+        if (userList != null) {
+            for (User user : userList) {
+                if (user.getPlayerName().equals(username)) {
                     return true;
                 }
             }
-        } catch (IOException e) {
-            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
         }
         return false;
     }
 
-    protected void updateUser(User user) {
-        String[] lineSplited;
-        List<String> userList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(usersPath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                userList.add(line);
+    public List<User> readDatabase() {
+        try {
+            List<User> userList = new ArrayList<>();
+            File obj = new File(FILE_PATH);
+            Scanner reader = new Scanner(obj);
+            while (reader.hasNext()) {
+                String currLine = reader.next();
+                String[] currLineSerialized = currLine.split("\\|");
+                User user = new User(currLineSerialized[0], currLineSerialized[1], currLineSerialized[2], Integer.parseInt(currLineSerialized[3]));
+                userList.add(user);
             }
-            for (int i = 0; i < userList.size(); i++) {
-                lineSplited = userList.get(i).split(";");
-                if (lineSplited[0].equals(user.getPlayerName()) && lineSplited[1].equals(user.getPlayerPassword())) {
-                    userList.set(i, user.toString());
-                    System.out.println("Updated!");
+            reader.close();
+            return userList;
+        } catch (Exception e) {
+            System.out.println("An error occurred reading the DB.");
+        }
+        return null;
+    }
+
+    public User findUser(String username, String password) {
+        List<User> userList = readDatabase();
+        if (userList != null) {
+            for (User user : userList) {
+                if (user.getPlayerName().equals(username) && user.getPlayerPassword().equals(password)) {
+                    return user;
                 }
             }
+        }
+        return null;
+    }
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(usersPath, false))) {
-                writer.write(user.toString());
-                writer.newLine();
-                writer.close();
-                System.out.println(Colors.GREEN + user.getPlayerName() + " created, saved to the file successfully." + Colors.RESET);
-            } catch (IOException e) {
-                System.err.println("Error writing to the file: " + e.getMessage());
+    public boolean writeDatabase(List<User> userList){
+
+        try {
+            FileWriter fw = new FileWriter(FILE_PATH,false);
+            for (int i = 0; i < userList.size(); i++) {
+                String toWrite = userList.get(i).toString();
+                fw.write(toWrite + "\n");
             }
-
+            fw.close();
 
         } catch (IOException e) {
-            System.err.println(Colors.RED + "ERROR READING FROM THE FILE: " + e.getMessage() + Colors.RESET);
+            System.out.println("An error occurred writting to the DB.");
+            e.printStackTrace();
         }
+        return true;
     }
 }
