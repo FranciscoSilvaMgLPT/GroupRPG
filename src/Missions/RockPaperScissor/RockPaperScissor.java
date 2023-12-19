@@ -36,7 +36,8 @@ public class RockPaperScissor {
             default:
                 // Handle invalid input if needed
                 System.out.println("Invalid number. Please try again.");
-                rockPaperScissorMission();
+                return rockPaperScissorMission();
+
         }
 
         switch (cpu) {
@@ -50,7 +51,6 @@ public class RockPaperScissor {
                 cpuResponse = "✌\uFE0F";
                 break;
             default:
-                // Handle unexpected CPU response if needed
                 break;
         }
         return checkWhoWon();
@@ -61,7 +61,6 @@ public class RockPaperScissor {
         String outcomeLose = outcomeString + Colors.RED_BRIGHT + ". You lose!" + Colors.RESET;
         String outcomeWon = outcomeString + Colors.GREEN_BRIGHT + ". You won!" + Colors.RESET;
         String outcomeDraw = outcomeString + Colors.YELLOW_BRIGHT + "too. It's a Draw!!" + Colors.RESET;
-        // Use equals to compare strings, not ==
         if ((playerResponse.equals("✌\uFE0F") && cpuResponse.equals("✊")) ||
                 (playerResponse.equals("✋") && cpuResponse.equals("✌\uFE0F")) ||
                 (playerResponse.equals("✊") && cpuResponse.equals("✋"))) {
