@@ -31,8 +31,10 @@ public class RockPaperScissor {
                 playerResponse = "✌\uFE0F";
                 break;
             default:
+
                 System.out.println(Colors.RED_BOLD_BRIGHT + "\nInvalid number. Please try again.\n" + Colors.RESET);
-                rockPaperScissorMission();
+                return rockPaperScissorMission();
+
         }
 
         switch (cpu) {
