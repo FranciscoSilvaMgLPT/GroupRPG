@@ -244,7 +244,7 @@ public class GameManager {
 
 
     public void ranking(User user) {
-        int limit = Math.min(userList.size(), 9);
+        int limit = Math.min(userList.size(), 5);
         userList = userList.stream()
                 .sorted(Comparator.comparingInt(User::getPlayerPoints).reversed())
                 .collect(Collectors.toList());
@@ -252,16 +252,16 @@ public class GameManager {
         IntStream.range(0, limit)
                 .forEach((i) -> {
                     String message = switch (i) {
-                        case 0 -> "🥇" + Colors.YELLOW_BOLD_BRIGHT;
+                        case 0 -> "\n🥇" + Colors.YELLOW_BOLD_BRIGHT;
                         case 1 -> "🥈" + Colors.WHITE_BOLD_BRIGHT;
                         case 2 -> "🥉" + Colors.MAGENTA_BOLD_BRIGHT;
                         default -> String.valueOf(i + 1);
                     };
 
-                    System.out.println(message + ": " + userList.get(i).toStringRank() + Colors.RESET);
+                    System.out.println(message + ": " + userList.get(i).toStringRank() + Colors.RESET+"\n");
                 });
 
-        IntStream.range(9, userList.size())
+        IntStream.range(5, userList.size())
                 .filter(i -> user.getPlayerName().equals(userList.get(i).getPlayerName()))
                 .forEach(i -> System.out.println(i + 1 + ": " + userList.get(i).toStringRank()));
     }
