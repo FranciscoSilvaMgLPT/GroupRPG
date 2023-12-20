@@ -129,7 +129,7 @@ public class GameManager {
                         System.out.println(e.getMessage());
                     }
                 } else {
-                    user.setPlayerPoints(user.getPlayerPoints()+5);
+                    user.setPlayerPoints(user.getPlayerPoints() + 5);
                     System.out.println("+5 POINTS!");
                     map.showMap(user);
                     if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 1) {
@@ -255,14 +255,16 @@ public class GameManager {
                         case 0 -> "\n🥇" + Colors.YELLOW_BOLD_BRIGHT;
                         case 1 -> "🥈" + Colors.WHITE_BOLD_BRIGHT;
                         case 2 -> "🥉" + Colors.MAGENTA_BOLD_BRIGHT;
-                        default -> String.valueOf(i + 1);
+                        default -> String.valueOf(i + 1 + " ");
                     };
-
-                    System.out.println(message + ": " + userList.get(i).toStringRank() + Colors.RESET);
+                    String underlinedText = "\033[4m" + userList.get(i).toStringRank() + "\033[0m";
+                    System.out.println(message + ": " +
+                            (userList.get(i).getPlayerName().equals(user.getPlayerName()) ? underlinedText : userList.get(i).toStringRank())
+                            + Colors.RESET);
                 });
         IntStream.range(5, userList.size())
                 .filter(i -> user.getPlayerName().equals(userList.get(i).getPlayerName()))
-                .forEach(i -> System.out.println(i + 1 + ": " + userList.get(i).toStringRank()+"\n"));
+                .forEach(i -> System.out.println(i + 1 + " : \033[4m" + userList.get(i).toStringRank() + "\033[0m\n"));
     }
 
     public void startGameNarrative() {
