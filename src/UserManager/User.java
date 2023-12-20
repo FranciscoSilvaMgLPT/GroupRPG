@@ -22,8 +22,8 @@ public class User {
         this.playerPassword = playerPassword;
         this.playerBackgroundColor = Colors.BLUE_BACKGROUND_BRIGHT;
         this.playerPoints = 0;
-        this.playerGifts=0;
-        this.cheats=1;
+        this.playerGifts = 0;
+        this.cheats = 1;
     }
 
     public User(String playerName, String playerPassword, String playerBackgroundColor, int playerPoints) {
@@ -31,9 +31,8 @@ public class User {
         this.playerPassword = playerPassword;
         this.playerBackgroundColor = Colors.valueOf(playerBackgroundColor);
         this.playerPoints = playerPoints;
-        this.cheats=1;
+        this.cheats = 1;
     }
-
 
 
     //====== PLAYER METHODS ======\\
@@ -75,6 +74,7 @@ public class User {
     public int getCheats() {
         return cheats;
     }
+
     public void setCheats(int cheats) {
         this.cheats = cheats;
     }
@@ -107,7 +107,8 @@ public class User {
     public String toString() {
         return playerName + SEPARATOR + playerPassword + SEPARATOR + playerBackgroundColor.name() + SEPARATOR + playerPoints;
     }
+
     public String toStringRank() {
-        return playerName + SEPARATOR + playerBackgroundColor.name() + SEPARATOR +"Points: "+ playerPoints;
+        return playerName +" "+ SEPARATOR+" " + "Points: " + playerPoints;
     }
 }
