@@ -8,7 +8,6 @@ import UserManager.User;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GameManager {
@@ -62,12 +61,15 @@ public class GameManager {
             switch (choice) {
                 case "1":
                     play(user);
+                    fileManager.writeDatabase(userList);
                     break;
                 case "2":
                     choiceBackground(user);
+                    fileManager.writeDatabase(userList);
                     break;
                 case "3":
                     cheats(user);
+                    fileManager.writeDatabase(userList);
                     break;
                 case "4":
 
@@ -164,26 +166,29 @@ public class GameManager {
             System.out.println();
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             choice = scan.next();
-            map.checkUserMove(user, choice.toUpperCase());
-            if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
-                System.out.println(Colors.YELLOW_BOLD_BRIGHT + "\nYOU NOW HAVE A CHANCE TO MAKE MORE POINTS!" + Colors.WHITE_BOLD_BRIGHT + "\nWIN -> " + Colors.GREEN_BOLD_BRIGHT + " 2 POINTS " + Colors.WHITE_BOLD_BRIGHT + "\nDRAW -> " + Colors.GREEN_BOLD_BRIGHT + " 1 POINT " + Colors.YELLOW_BOLD_BRIGHT + "\nYOU HAVE 3 CHANCES, READY? GO!\n" + Colors.RESET);
-                System.out.println(Colors.YELLOW_BOLD_BRIGHT + "CHOOSE YOUR GUN!" + Colors.RESET);
-                int playRockTime = 0;
-                while (playRockTime < 3) {
-                    user.setPlayerPoints(user.getPlayerPoints() + rockPaperScissor.rockPaperScissorMission());
-                    playRockTime++;
-                }
-                System.out.println(Colors.GREEN_BOLD_BRIGHT + "\nCONGRATZZZZZ!!! YOU REACHED THE CHRISTMAS TREE!"
-                        + (user.getPlayerGifts() == 0 ? " " + Colors.RED_BOLD_BRIGHT + "BUT SADLY YOU GATHER 0 GIFTS! 😫" + Colors.RESET : " WELL DONE! YOU BROUGHT " + user.getPlayerGifts() + " GIFTS! 🥳🎁" + Colors.RESET));
-                System.out.println(Colors.WHITE_BOLD_BRIGHT + "YOU MADE " + user.getPlayerPoints() + " POINTS\n" + Colors.RESET);
-                try {
-                    Thread.sleep(500);
-                    gameManager.playMenu(user);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+            if (!choice.equals("0")) {
+                map.checkUserMove(user, choice.toUpperCase());
+                if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
+                    System.out.println(Colors.YELLOW_BOLD_BRIGHT + "\nYOU NOW HAVE A CHANCE TO MAKE MORE POINTS!" + Colors.WHITE_BOLD_BRIGHT + "\nWIN -> " + Colors.GREEN_BOLD_BRIGHT + " 2 POINTS " + Colors.WHITE_BOLD_BRIGHT + "\nDRAW -> " + Colors.GREEN_BOLD_BRIGHT + " 1 POINT " + Colors.YELLOW_BOLD_BRIGHT + "\nYOU HAVE 3 CHANCES, READY? GO!\n" + Colors.RESET);
+                    System.out.println(Colors.YELLOW_BOLD_BRIGHT + "CHOOSE YOUR GUN!" + Colors.RESET);
+                    int playRockTime = 0;
+                    while (playRockTime < 3) {
+                        user.setPlayerPoints(user.getPlayerPoints() + rockPaperScissor.rockPaperScissorMission());
+                        playRockTime++;
+                    }
+                    System.out.println(Colors.GREEN_BOLD_BRIGHT + "\nCONGRATZZZZZ!!! YOU REACHED THE CHRISTMAS TREE!"
+                            + (user.getPlayerGifts() == 0 ? " " + Colors.RED_BOLD_BRIGHT + "BUT SADLY YOU GATHER 0 GIFTS! 😫" + Colors.RESET : " WELL DONE! YOU BROUGHT " + user.getPlayerGifts() + " GIFTS! 🥳🎁" + Colors.RESET));
+                    System.out.println(Colors.WHITE_BOLD_BRIGHT + "YOU MADE " + user.getPlayerPoints() + " POINTS\n" + Colors.RESET);
+                    try {
+                        Thread.sleep(500);
+                        gameManager.playMenu(user);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
         } while (!choice.equals("0"));
+        playMenu(user);
     }
 
     public void registerUser() {
