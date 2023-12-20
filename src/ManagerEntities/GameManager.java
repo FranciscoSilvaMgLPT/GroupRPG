@@ -23,7 +23,7 @@ public class GameManager {
 
     public void initialMenu() {
         do {
-
+            user=null;
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "INITIAL MENU");
             System.out.println("1. Register");
             System.out.println("2. Login");
@@ -39,6 +39,7 @@ public class GameManager {
                     break;
                 case "0":
                     System.out.println(Colors.YELLOW_BRIGHT + "\nExiting...\n" + Colors.RESET);
+                    System.exit(0);
                     break;
                 default:
                     System.out.println(Colors.RED_BOLD_BRIGHT + "\nInvalid option!\n" + Colors.RESET);
@@ -57,19 +58,17 @@ public class GameManager {
             System.out.println("5. Save");
             System.out.println("0. Logout");
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
+            fileManager.writeDatabase(userList);
             choice = scan.next();
             switch (choice) {
                 case "1":
                     play(user);
-                    fileManager.writeDatabase(userList);
                     break;
                 case "2":
                     choiceBackground(user);
-                    fileManager.writeDatabase(userList);
                     break;
                 case "3":
                     cheats(user);
-                    fileManager.writeDatabase(userList);
                     break;
                 case "4":
 
@@ -80,7 +79,6 @@ public class GameManager {
                 case "0":
                     System.out.println(Colors.YELLOW_BRIGHT + "\nLogging out\n" + Colors.RESET);
                     fileManager.writeDatabase(userList);
-                    user=null;
                     initialMenu();
                     break;
                 default:
