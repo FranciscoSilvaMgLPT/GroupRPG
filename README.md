@@ -2,9 +2,10 @@
 This is a simple Java-based game with maps/levels. Players can explore environments, face challenges, collect rewards, and find the exit door to complete the game.
 
 ## Features
-- **Login&Register** Create and log in to the player to accumulate maximum points and 🎁 as possible.
+- **Login&Register** Create and log in to game.
 - **GameMap.Map Navigation:** Move the player using the W, A, S, D keys.
-- **Challenges and Rewards:** Encounter challenges within the map to obtain rewards.\
+- **Objectives:** Gather 🎁 to accumulate maximum points as possible.
+- **Challenges and Rewards:** Encounter challenges within the map to obtain rewards.
 - **Cheats** You have cheats, but I don't recommend them, I recommend playing in hardcore mode
 - **Ranking** See your points and those of other players.
 - **Exit Door:** Locate the exit door to finish the game.
