@@ -94,9 +94,6 @@ public class GameManager {
         IntStream.range(0, colorsList.size() - 1)
                 .mapToObj(index -> Colors.WHITE_BOLD_BRIGHT + "" + (index + 1) + ": " + Colors.RESET + colorsList.get(index + 1) + "◻️" + Colors.RESET)
                 .forEach(System.out::println);
-        /*for (int i = 1; i < colorsList.size(); i++) {
-            System.out.println(i + ": " + colorsList.get(i) + "◻️" + Colors.RESET);
-        }*/
         System.out.println(Colors.WHITE_BOLD_BRIGHT + "0: " + Colors.RESET + "RETURN TO MENU");
         if (choice.equals("0")) {
             playMenu(user);
@@ -130,6 +127,8 @@ public class GameManager {
                         System.out.println(e.getMessage());
                     }
                 } else {
+                    user.setPlayerPoints(user.getPlayerPoints()+5);
+                    System.out.println("+5 POINTS!");
                     map.showMap(user);
                     if (map.getMap()[user.getY()][user.getX()].getMissionQuizz() == 1) {
                         quiz.playQuiz1Level1(user);
