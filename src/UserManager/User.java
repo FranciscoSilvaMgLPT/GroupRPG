@@ -107,4 +107,7 @@ public class User {
     public String toString() {
         return playerName + SEPARATOR + playerPassword + SEPARATOR + playerBackgroundColor.name() + SEPARATOR + playerPoints;
     }
+    public String toStringRank() {
+        return playerName + SEPARATOR + playerBackgroundColor.name() + SEPARATOR +"Points: "+ playerPoints;
+    }
 }

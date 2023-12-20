@@ -6,14 +6,15 @@ import Missions.Quiz.Quiz;
 import Missions.RockPaperScissor.RockPaperScissor;
 import UserManager.User;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GameManager {
     FileManager fileManager = new FileManager();
     Quiz quiz = new Quiz();
-    User user = new User();
     Scanner scan = new Scanner(System.in);
     String choice;
     RockPaperScissor rockPaperScissor = new RockPaperScissor();
@@ -23,7 +24,6 @@ public class GameManager {
 
     public void initialMenu() {
         do {
-            user=null;
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "INITIAL MENU");
             System.out.println("1. Register");
             System.out.println("2. Login");
@@ -48,8 +48,8 @@ public class GameManager {
     }
 
     public void playMenu(User user) {
-
         do {
+            fileManager.writeDatabase(userList, user);
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "PLAY Menu");
             System.out.println("1. PLAY");
             System.out.println("2. Change your player background");
@@ -58,7 +58,6 @@ public class GameManager {
             System.out.println("5. Save");
             System.out.println("0. Logout");
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
-            fileManager.writeDatabase(userList);
             choice = scan.next();
             switch (choice) {
                 case "1":
@@ -71,14 +70,14 @@ public class GameManager {
                     cheats(user);
                     break;
                 case "4":
-
+                    ranking(user);
                     break;
                 case "5":
-                    fileManager.writeDatabase(userList);
+                    fileManager.writeDatabase(userList, user);
                     break;
                 case "0":
                     System.out.println(Colors.YELLOW_BRIGHT + "\nLogging out\n" + Colors.RESET);
-                    fileManager.writeDatabase(userList);
+                    fileManager.writeDatabase(userList, user);
                     initialMenu();
                     break;
                 default:
@@ -115,7 +114,6 @@ public class GameManager {
         GameManager gameManager = new GameManager();
         map.level1Map(user);
         do {
-
             if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isNextFloor()) {
                 map.showMap(user);
                 System.out.println(Colors.YELLOW_BOLD_BRIGHT + "ENTER ANY KEY TO CONTINUE TO LEVEL 2" + Colors.RESET);
@@ -172,6 +170,7 @@ public class GameManager {
                     int playRockTime = 0;
                     while (playRockTime < 3) {
                         user.setPlayerPoints(user.getPlayerPoints() + rockPaperScissor.rockPaperScissorMission());
+                        System.out.println(user.getPlayerPoints());
                         playRockTime++;
                     }
                     System.out.println(Colors.GREEN_BOLD_BRIGHT + "\nCONGRATZZZZZ!!! YOU REACHED THE CHRISTMAS TREE!"
@@ -218,11 +217,10 @@ public class GameManager {
         System.out.println();
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getPlayerName().equals(username) && userList.get(i).getPlayerPassword().equals(password)) {
-                user = userList.get(i);
-                playMenu(user);
+                playMenu(userList.get(i));
             }
         }
-            System.out.println("USER NOT FOUND");
+        System.out.println("USER NOT FOUND");
 
     }
 
@@ -239,6 +237,30 @@ public class GameManager {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+
+    public void ranking(User user) {
+        int limit = Math.min(userList.size(), 9);
+        userList = userList.stream()
+                .sorted(Comparator.comparingInt(User::getPlayerPoints).reversed())
+                .collect(Collectors.toList());
+
+        IntStream.range(0, limit)
+                .forEach((i) -> {
+                    String message = switch (i) {
+                        case 0 -> "🥇" + Colors.YELLOW_BOLD_BRIGHT;
+                        case 1 -> "🥈" + Colors.WHITE_BOLD_BRIGHT;
+                        case 2 -> "🥉" + Colors.MAGENTA_BOLD_BRIGHT;
+                        default -> String.valueOf(i + 1);
+                    };
+
+                    System.out.println(message + ": " + userList.get(i).toStringRank() + Colors.RESET);
+                });
+
+        IntStream.range(9, userList.size())
+                .filter(i -> user.getPlayerName().equals(userList.get(i).getPlayerName()))
+                .forEach(i -> System.out.println(i + 1 + ": " + userList.get(i).toStringRank()));
     }
 
 }
