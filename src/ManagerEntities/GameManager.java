@@ -107,6 +107,8 @@ public class GameManager {
     }
 
     public void play(User user) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        startGameNarrative();
         Map map = new Map();
         GameManager gameManager = new GameManager();
         map.level1Map(user);
@@ -169,14 +171,16 @@ public class GameManager {
                     int playRockTime = 0;
                     while (playRockTime < 3) {
                         user.setPlayerPoints(user.getPlayerPoints() + rockPaperScissor.rockPaperScissorMission());
-                        System.out.println(user.getPlayerPoints());
                         playRockTime++;
                     }
                     System.out.println(Colors.GREEN_BOLD_BRIGHT + "\nCONGRATZZZZZ!!! YOU REACHED THE CHRISTMAS TREE!"
                             + (user.getPlayerGifts() == 0 ? " " + Colors.RED_BOLD_BRIGHT + "BUT SADLY YOU GATHER 0 GIFTS! 😫" + Colors.RESET : " WELL DONE! YOU BROUGHT " + user.getPlayerGifts() + " GIFTS! 🥳🎁" + Colors.RESET));
                     System.out.println(Colors.WHITE_BOLD_BRIGHT + "YOU MADE " + user.getPlayerPoints() + " POINTS\n" + Colors.RESET);
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(2000);
+                        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                        endGameNarrative(user);
+                        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                         gameManager.playMenu(user);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -262,4 +266,39 @@ public class GameManager {
                 .forEach(i -> System.out.println(i + 1 + ": " + userList.get(i).toStringRank()));
     }
 
+    public void startGameNarrative() {
+        try {
+            String story = "\nOn December 24, 2023, Paulo was excited to open gifts with his family. \nBut when he looked at the Christmas tree, his presents were gone, making him sad and confused.\n" +
+                    "\n" +
+                    "He found a green shoe that seemed to belong to an elf named Marco, thinking Marco took the gifts. \nFeeling down, Paulo went to his room.\n" +
+                    "\n" +
+                    "Santa Claus Tiago saw everything and decided to help. \nHe went to Marco's place to find the presents.\n" + "\n";
+
+            for (int i = 0; i < story.length(); i++) {
+                System.out.print(Colors.BLUE_BOLD_BRIGHT + "" + story.charAt(i) + Colors.RESET);
+                Thread.sleep(50);
+            }
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            System.out.println("\nSomething went wrong while starting game narrative...\n");
+        }
+    }
+
+    public void endGameNarrative(User user) {
+        try {
+            String story;
+            if (user.getPlayerGifts() > 0) {
+                story = "\nOn Christmas morning, Paulo felt sad, but he found his gifts under the tree. \n\nHe opened them, feeling happy again until the next Christmas.";
+            } else {
+                story = "\nPaulo woke up sad on Christmas and found a note from Santa Tiago, saying he couldn't get the presents but promised more next year. \n\nPaulo felt a bit better, looking forward to the next Christmas.\n\n";
+            }
+            for (int i = 0; i < story.length(); i++) {
+                System.out.print(Colors.BLUE_BOLD_BRIGHT + "" + story.charAt(i) + Colors.RESET);
+                Thread.sleep(50);
+            }
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            System.out.println("\nSomething went wrong while starting game narrative...\n");
+        }
+    }
 }
