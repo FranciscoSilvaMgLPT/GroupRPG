@@ -258,12 +258,11 @@ public class GameManager {
                         default -> String.valueOf(i + 1);
                     };
 
-                    System.out.println(message + ": " + userList.get(i).toStringRank() + Colors.RESET+"\n");
+                    System.out.println(message + ": " + userList.get(i).toStringRank() + Colors.RESET);
                 });
-
         IntStream.range(5, userList.size())
                 .filter(i -> user.getPlayerName().equals(userList.get(i).getPlayerName()))
-                .forEach(i -> System.out.println(i + 1 + ": " + userList.get(i).toStringRank()));
+                .forEach(i -> System.out.println(i + 1 + ": " + userList.get(i).toStringRank()+"\n"));
     }
 
     public void startGameNarrative() {
