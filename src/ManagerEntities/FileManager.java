@@ -65,8 +65,12 @@ public class FileManager {
         return null;
     }
 
-    public boolean writeDatabase(List<User> userList){
-
+    public void writeDatabase(List<User> userList,User user){
+        for (int i = 0; i < userList.size(); i++) {
+            if(userList.get(i).getPlayerName().equals(user.getPlayerName())){
+                userList.set(i,user);
+            }
+        }
         try {
             FileWriter fw = new FileWriter(FILE_PATH,false);
             for (int i = 0; i < userList.size(); i++) {
@@ -79,6 +83,21 @@ public class FileManager {
             System.out.println("An error occurred writting to the DB.");
             e.printStackTrace();
         }
-        return true;
+    }
+
+    public void writeDatabase(List<User> userList){
+        System.out.println("ESTOU A GRAVAR!!");
+        try {
+            FileWriter fw = new FileWriter(FILE_PATH,false);
+            for (int i = 0; i < userList.size(); i++) {
+                String toWrite = userList.get(i).toString();
+                fw.write(toWrite + "\n");
+            }
+            fw.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred writting to the DB.");
+            e.printStackTrace();
+        }
     }
 }
