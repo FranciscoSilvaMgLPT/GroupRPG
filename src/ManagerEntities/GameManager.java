@@ -25,9 +25,9 @@ public class GameManager {
     public void initialMenu() {
         do {
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "INITIAL MENU");
-            System.out.println("1. REGISTER");
-            System.out.println("2. LOGIN");
-            System.out.println("0. EXIT THE PROGRAM");
+            System.out.println("1. REGISTER 📝");
+            System.out.println("2. LOGIN 👤");
+            System.out.println("0. EXIT ⛔️");
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             choice = scan.next();
             switch (choice) {
@@ -51,12 +51,12 @@ public class GameManager {
         do {
             fileManager.writeDatabase(userList, user);
             System.out.println(Colors.WHITE_BOLD_BRIGHT + "PLAY MENU");
-            System.out.println("1. PLAY");
-            System.out.println("2. CHANGE SANTA CLAUS COLOR");
-            System.out.println("3. CHEATS");
-            System.out.println("4. RANKING");
-            System.out.println("5. SAVE");
-            System.out.println("0. LOGOUT");
+            System.out.println("1. PLAY 🕹️");
+            System.out.println("2. CHANGE SANTA CLAUS COLOR 🎅🏻");
+            System.out.println("3. CHEATS 👀");
+            System.out.println("4. RANKING 🥇");
+            System.out.println("5. SAVE 💾");
+            System.out.println("0. LOGOUT 🚪");
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
             choice = scan.next();
             switch (choice) {
