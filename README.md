@@ -29,6 +29,6 @@ Paulo woke up sad on Christmas and found a note from Santa Tiago, saying he coul
 
 
 ## Project Members
-- **Ricardo Silva** [@rickymoz]
-- **Francisco Silva** [@FranciscoSilvaMgLPT]
-- **Paulo Barbosa** [@zhonions]
+[- **Ricardo Silva**](https://github.com/rickymoz)
+[- **Francisco Silva**](https://github.com/FranciscoSilvaMgLPT)
+[- **Paulo Barbosa**](https://github.com/zhonions)
