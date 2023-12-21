@@ -17,7 +17,7 @@ He found a green shoe that seemed to belong to an elf named Marco, thinking Marc
 Santa Claus Tiago saw everything and decided to help. He went to Marco's place to find the presents.
 
 ### Conclusion #1
-Waking up saddened on Christmas, Paulo found a note from Santa Tiago, expressing regret at not retrieving the presents but promising an even better next year. Paulo's spirits lifted, eagerly awaiting the next Christmas.
+On Christmas morning, Paulo felt sad, but he found his gifts under the tree. He opened them, feeling happy again until the next Christmas.
 
 ### Conclusion #2
 Paulo woke up sad on Christmas and found a note from Santa Tiago, saying he couldn't get the presents but promised more next year. Paulo felt a bit better, looking forward to the next Christmas.
