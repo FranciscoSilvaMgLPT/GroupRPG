@@ -24,7 +24,7 @@ Paulo woke up sad on Christmas and found a note from Santa Tiago, saying he coul
 
 ## Diagram
 <p align="center">
-  <img src="https://ibb.co/R36rhyR" alt="Example Image">
+  <img src="https://i.postimg.cc/R08MCG3K/aa.png" alt="Example Image">
 </p>
 
 
