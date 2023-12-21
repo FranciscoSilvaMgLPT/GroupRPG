@@ -86,7 +86,6 @@ public class FileManager {
     }
 
     public void writeDatabase(List<User> userList){
-        System.out.println("ESTOU A GRAVAR!!");
         try {
             FileWriter fw = new FileWriter(FILE_PATH,false);
             for (int i = 0; i < userList.size(); i++) {
