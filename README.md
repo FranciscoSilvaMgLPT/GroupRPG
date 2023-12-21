@@ -8,7 +8,7 @@ This is a simple Java-based game with maps/levels. Players can explore environme
 - **Challenges and Rewards:** Encounter challenges within the map to obtain rewards.
 - **Cheats** You have cheats, but I don't recommend them, I recommend playing in hardcore mode
 - **Ranking** See your points and those of other players.
-- **Exit Door:** Locate the exit door to finish the game.
+- **Find Christmas tree:** Locate the Christmas tree to finish the game.
 
 ## Story Overview
 ### Introduction
