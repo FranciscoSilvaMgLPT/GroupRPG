@@ -224,13 +224,13 @@ public class GameManager {
         System.out.println(Colors.WHITE_BOLD_BRIGHT + "\nPASSWORD" + Colors.RESET);
         System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
         String password = scan.next();
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getPlayerName().equals(username) && userList.get(i).getPlayerPassword().equals(password)) {
-                System.out.println();
-                playMenu(userList.get(i));
+            for (int i = 0; i < userList.size(); i++) {
+                if (userList.get(i).getPlayerName().equals(username) && userList.get(i).getPlayerPassword().equals(password)) {
+                    System.out.println();
+                    playMenu(userList.get(i));
+                }
             }
-        }
-        System.out.println(Colors.RED_BOLD_BRIGHT + "\nUSER NOT FOUND\n" + Colors.RESET);
+            System.out.println(Colors.RED_BOLD_BRIGHT + "\nUSER NOT FOUND\n" + Colors.RESET);
 
     }
 
@@ -271,7 +271,8 @@ public class GameManager {
                 });
         IntStream.range(5, userList.size())
                 .filter(i -> user.getPlayerName().equals(userList.get(i).getPlayerName()))
-                .forEach(i -> System.out.println(i + 1 + " : \033[4m" + userList.get(i).toStringRank() + "\033[0m\n"));
+                .forEach(i -> System.out.println("———————————————————\n"+
+                        (i + 1) + " : \033[4m" + userList.get(i).toStringRank() + "\033[0m\n"));
     }
 
     public void startGameNarrative() {
