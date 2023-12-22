@@ -120,7 +120,7 @@ public class GameManager {
 
     public void play(User user) {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-  //     startGameNarrative();
+        startGameNarrative();
         Map map = new Map();
         GameManager gameManager = new GameManager();
         map.level1Map(user);
@@ -172,7 +172,7 @@ public class GameManager {
             System.out.println(Colors.WHITE_BRIGHT + "0." + Colors.RESET + " Exit");
             System.out.println();
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
-            choice = scan.next().substring(0,1);
+            choice = scan.next().substring(0, 1);
             if (!choice.equals("0")) {
                 map.checkUserMove(user, choice.toUpperCase());
                 if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
@@ -224,13 +224,13 @@ public class GameManager {
         System.out.println(Colors.WHITE_BOLD_BRIGHT + "\nPASSWORD" + Colors.RESET);
         System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
         String password = scan.next();
-            for (int i = 0; i < userList.size(); i++) {
-                if (userList.get(i).getPlayerName().equals(username) && userList.get(i).getPlayerPassword().equals(password)) {
-                    System.out.println();
-                    playMenu(userList.get(i));
-                }
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getPlayerName().equals(username) && userList.get(i).getPlayerPassword().equals(password)) {
+                System.out.println();
+                playMenu(userList.get(i));
             }
-            System.out.println(Colors.RED_BOLD_BRIGHT + "\nUSER NOT FOUND\n" + Colors.RESET);
+        }
+        System.out.println(Colors.RED_BOLD_BRIGHT + "\nUSER NOT FOUND\n" + Colors.RESET);
 
     }
 
@@ -271,7 +271,7 @@ public class GameManager {
                 });
         IntStream.range(5, userList.size())
                 .filter(i -> user.getPlayerName().equals(userList.get(i).getPlayerName()))
-                .forEach(i -> System.out.println("———————————————————\n"+
+                .forEach(i -> System.out.println("———————————————————\n" +
                         (i + 1) + " : \033[4m" + userList.get(i).toStringRank() + "\033[0m\n"));
     }
 
