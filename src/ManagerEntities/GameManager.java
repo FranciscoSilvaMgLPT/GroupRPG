@@ -120,7 +120,7 @@ public class GameManager {
 
     public void play(User user) {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        startGameNarrative();
+  //     startGameNarrative();
         Map map = new Map();
         GameManager gameManager = new GameManager();
         map.level1Map(user);
@@ -172,7 +172,7 @@ public class GameManager {
             System.out.println(Colors.WHITE_BRIGHT + "0." + Colors.RESET + " Exit");
             System.out.println();
             System.out.print(Colors.WHITE_BOLD_BRIGHT + "=> " + Colors.RESET);
-            choice = scan.next();
+            choice = scan.next().substring(0,1);
             if (!choice.equals("0")) {
                 map.checkUserMove(user, choice.toUpperCase());
                 if (map.getMap()[user.getY()][user.getX()].isUser() && map.getMap()[user.getY()][user.getX()].isFinish()) {
